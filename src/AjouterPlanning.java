@@ -1,26 +1,28 @@
-import java.awt.EventQueue;
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+
+import java.awt.EventQueue;
 import java.awt.Font;
+
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.SpinnerDateModel;
-import java.util.Date;
-import java.util.Calendar;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
+import com.toedter.calendar.JDateChooser;
+
+
 public class AjouterPlanning extends JFrame {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
@@ -29,9 +31,7 @@ public class AjouterPlanning extends JFrame {
 	private JTextField textField_3;
 	
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		
 	
@@ -52,9 +52,8 @@ public class AjouterPlanning extends JFrame {
 	
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	
+	
 	public AjouterPlanning() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -99,26 +98,31 @@ public class AjouterPlanning extends JFrame {
 		nbDoc.setBounds(516, 277, 37, 20);
 		contentPane.add(nbDoc);
 		
-		JSpinner dateDeb = new JSpinner();
-		dateDeb.setModel(new SpinnerDateModel(new Date(1434927600000L), new Date(1434927600000L), new Date(1529622000000L), Calendar.DAY_OF_YEAR));
-		dateDeb.setBounds(516, 163, 97, 20);
+
+		JDateChooser dateDeb = new JDateChooser();
+		dateDeb.setDateFormatString("dd-MM-yyyy");
+		dateDeb.setBounds(516, 218, 97, 20);
 		contentPane.add(dateDeb);
 		
-		JSpinner dateFin = new JSpinner();
-		dateFin.setModel(new SpinnerDateModel(new Date(1435014000000L), new Date(1435014000000L), new Date(1529708400000L), Calendar.DAY_OF_YEAR));
-		dateFin.setBounds(516, 216, 97, 20);
+		JDateChooser dateFin = new JDateChooser();
+		dateFin.setDateFormatString("dd-MM-yyyy");
+		dateFin.setBounds(516, 159, 97, 20);
 		contentPane.add(dateFin);
+		
 		
 		JButton butAjouter = new JButton("Ajouter");
 		butAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PlanningGarde Plan= new PlanningGarde(textField.getText(), dateDeb.getModel(), dateFin.getModel());
-				textField_1.setText(Plan.NomPlanning);
-				textField_2.setText(Plan.DateDebut.getValue().toString());
-				textField_3.setText(Plan.DateFin.getValue().toString());
+				
+				/*PlanningGarde plan= new PlanningGarde(textField.getText(),dateDeb,dateFin);
+				textField_1.setText(plan.NomPlanning);
+				textField_2.setText(plan.DateDebut.getDate().toInstant().toString().substring(0, 10));
+				textField_3.setText(plan.DateFin.getDate().toInstant().toString().substring(0, 10));*/
 				
 			}
 		});
+		
+		
 		
 		butAjouter.setBounds(421, 388, 200, 50);
 		contentPane.add(butAjouter);
@@ -138,5 +142,9 @@ public class AjouterPlanning extends JFrame {
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
 		
+		
 	}
+	
+	
+	 
 }
