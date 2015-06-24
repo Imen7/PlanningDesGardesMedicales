@@ -3,11 +3,6 @@ public class Docteur {
 	String prenom;
 	Preference preference;
 
-	Docteur(String nom, String prenom) {
-		this.nom = nom;
-		this.prenom = prenom;
-
-	}
 
 	public String getNom() {
 		return nom;
