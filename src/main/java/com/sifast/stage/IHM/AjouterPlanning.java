@@ -1,4 +1,5 @@
-package com.sifast.stage;
+package com.sifast.stage.IHM;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -108,13 +109,12 @@ public class AjouterPlanning extends JFrame {
 
 		butAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				 PlanningGarde plan = new PlanningGarde(textField.getText(),
-				 dateDeb, dateFin);
-
 				new MembresDeGarde().setVisible(true);
 
 				/*
+				 * PlanningGarde plan = new PlanningGarde(textField.getText(),
+				 * dateDeb, dateFin);
+				 * 
 				 * textField_1.setText(plan.NomPlanning);
 				 * textField_2.setText(plan
 				 * .DateDebut.getDate().toInstant().toString().substring(0,

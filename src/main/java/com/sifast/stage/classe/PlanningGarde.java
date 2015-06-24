@@ -1,4 +1,4 @@
-package com.sifast.stage;
+package com.sifast.stage.classe;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -42,6 +42,5 @@ public class PlanningGarde {
 	public void setDateFin(JDateChooser dateFin) {
 		DateFin = dateFin;
 	}
-	
-	
+
 }

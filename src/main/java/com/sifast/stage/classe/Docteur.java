@@ -1,9 +1,19 @@
-package com.sifast.stage;
+package com.sifast.stage.classe;
+
+
 public class Docteur {
+
 	String nom;
 	String prenom;
 	Preference preference;
 
+	public Preference getPreference() {
+		return preference;
+	}
+
+	public void setPreference(Preference preference) {
+		this.preference = preference;
+	}
 
 	public String getNom() {
 		return nom;
