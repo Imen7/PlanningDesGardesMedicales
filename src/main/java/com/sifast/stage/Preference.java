@@ -1,3 +1,4 @@
+package com.sifast.stage;
 public class Preference {
 	String date;
 	PrefEnum prefenum;

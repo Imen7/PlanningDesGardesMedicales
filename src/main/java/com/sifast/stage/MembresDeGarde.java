@@ -1,3 +1,5 @@
+package com.sifast.stage;
+
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -12,14 +14,13 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JTextField;
 
 public class MembresDeGarde extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -31,12 +32,13 @@ public class MembresDeGarde extends JFrame {
 				}
 			}
 		});
+
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public MembresDeGarde() {
+
+		// System.out.println(AjouterPlanning.getNbDoc().getValue());
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setSize(1000, 600);
@@ -45,9 +47,16 @@ public class MembresDeGarde extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		// TODO work in progress here
+		PlanningGarde plan = new PlanningGarde();
+		
 		// text
-		JTextArea textArea = new JTextArea(
-				"Membre de plannning de garde (du plan.DateDebut  au plan.DateDebut ");
+		JTextArea textArea = new JTextArea("Membre de plannning de garde (du"
+				+ plan.getDateDebut().getDate().toInstant().toString()
+						.substring(0, 10)
+				+ " au"
+				+ plan.getDateFin().getDate().toInstant().toString()
+						.substring(0, 10) + ")");
 		textArea.setFont(new Font("Myanmar Text", Font.ITALIC, 20));
 		textArea.setEditable(false);
 		textArea.setBounds(30, 27, 926, 48);
@@ -69,11 +78,11 @@ public class MembresDeGarde extends JFrame {
 		table.setFont(font);
 		table.setRowHeight(30);
 
-		// JScrollPane 
-				JScrollPane pane = new JScrollPane(table);
-				pane.setBounds(43, 172, 913, 258);
+		// JScrollPane
+		JScrollPane pane = new JScrollPane(table);
+		pane.setBounds(43, 172, 913, 258);
 
-				contentPane.add(pane);
+		contentPane.add(pane);
 
 		// bouton ajouter
 		Object[] row = new Object[4];
@@ -82,7 +91,7 @@ public class MembresDeGarde extends JFrame {
 		btnAdd.setFont(new Font("Times New Roman", Font.PLAIN, 17));
 		btnAdd.setBounds(787, 102, 169, 42);
 		contentPane.add(btnAdd);
-		
+
 		btnAdd.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -95,13 +104,13 @@ public class MembresDeGarde extends JFrame {
 			}
 		});
 
-        // bouton supprimer
-		
+		// bouton supprimer
+
 		JButton btnSupprimerMembre = new JButton("Supprimer membre");
 		btnSupprimerMembre.setFont(new Font("Times New Roman", Font.PLAIN, 17));
 		btnSupprimerMembre.setBounds(610, 102, 169, 42);
 		contentPane.add(btnSupprimerMembre);
-		
+
 		btnSupprimerMembre.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {

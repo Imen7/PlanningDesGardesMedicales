@@ -1,3 +1,4 @@
+package com.sifast.stage;
 public class Docteur {
 	String nom;
 	String prenom;

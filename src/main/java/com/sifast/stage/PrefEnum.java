@@ -1,3 +1,4 @@
+package com.sifast.stage;
 public class PrefEnum {
 	boolean not_dispo;
 	boolean dispo_but;
