@@ -1,4 +1,4 @@
-package com.sifast.stage.IHM;
+package com.sifast.stage.ihm;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;

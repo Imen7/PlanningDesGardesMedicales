@@ -1,6 +1,8 @@
-package com.sifast.stage.IHM;
+package com.sifast.stage.ihm;
 
+import java.awt.Button;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
@@ -15,10 +17,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-
-import com.toedter.calendar.JCalendar;
 
 public class MembresDeGarde extends JFrame {
 		private JPanel contentPane;
@@ -76,18 +77,36 @@ public class MembresDeGarde extends JFrame {
 			btnAdd.addActionListener(new ActionListener() {
 
 				public void actionPerformed(ActionEvent e) {
+					//CTRL + SHIFT + O pour générer les imports
+					 class TableComponent extends DefaultTableCellRenderer {
 
-					JCalendar calendar = new JCalendar();
-					calendar.setBounds(40, 55, 198, 153);
-					contentPane.add(calendar);
+					  /**
+						 * 
+						 */
+						private static final long serialVersionUID = 1L;
+
+					public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+					    //Si la valeur de la cellule est un JButton, on transtype cette valeur
+					    if (value instanceof JButton)
+					      return (JButton) value;
+					    else
+					      return this;
+					  }
+					}
+					table.setDefaultRenderer(JButton.class, new TableComponent());
+
+					JButton btn= new JButton("Ajouter membre");
+
 					TableColumn nbrGardeColumn = table.getColumnModel()
 							.getColumn(1);
+					TableColumn dispoColumn = table.getColumnModel()
+							.getColumn(2);
 					JComboBox<String> comboBox = new JComboBox<String>(items);
 
-					nbrGardeColumn.setCellEditor(new DefaultCellEditor(comboBox));
+					nbrGardeColumn.setCellEditor(new DefaultCellEditor(comboBox));			
 
 					row[0] = new TextField().getText();
-					row[2] = new TextField().getText();
+					row[2]= new Button();
 
 					model.addRow(row);
 				}
