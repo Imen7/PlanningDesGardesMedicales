@@ -109,8 +109,13 @@ public class AjouterPlanning extends JFrame {
 
 		butAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new MembresDeGarde().setVisible(true);
-
+			//	new MembresDeGarde().setVisible(true);
+ 
+				MembresDeGarde frame = new MembresDeGarde();
+				frame.setVisible(true);
+				frame.setSize(1920, 1280);
+				frame.setLocationRelativeTo(null);
+				frame.setTitle("Membres de garde");
 				/*
 				 * PlanningGarde plan = new PlanningGarde(textField.getText(),
 				 * dateDeb, dateFin);
