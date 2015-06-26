@@ -21,6 +21,10 @@ import javax.swing.table.TableColumn;
 import com.toedter.calendar.JCalendar;
 
 public class MembresDeGarde extends JFrame {
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 		private JPanel contentPane;
 
 		public MembresDeGarde() {
