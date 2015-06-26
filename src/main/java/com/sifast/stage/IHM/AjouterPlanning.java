@@ -1,4 +1,4 @@
-package com.sifast.stage.ihm;
+package com.sifast.stage.IHM;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,6 +20,7 @@ import com.toedter.calendar.JDateChooser;
 
 public class AjouterPlanning extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
 	public static JSpinner nbDoc;
@@ -29,7 +30,7 @@ public class AjouterPlanning extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-				  AjouterPlanning frame = new AjouterPlanning();
+					AjouterPlanning frame = new AjouterPlanning();
 					frame.setVisible(true);
 					frame.setSize(1920, 1280);
 					frame.setLocationRelativeTo(null);
@@ -108,14 +109,8 @@ public class AjouterPlanning extends JFrame {
 
 		butAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// new MembresDeGarde().setVisible(true);
+				new MembresDeGarde().setVisible(true);
 
-				MembresDeGarde frame = new MembresDeGarde();
-				frame.setVisible(true);
-				frame.setSize(1920, 1280);
-				frame.setLocationRelativeTo(null);
-				frame.setTitle("Membres de grade");
-				
 				/*
 				 * PlanningGarde plan = new PlanningGarde(textField.getText(),
 				 * dateDeb, dateFin);
