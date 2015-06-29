@@ -1,11 +1,8 @@
 package com.sifast.stage.IHM;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.TextField;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -17,10 +14,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.JList;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -34,8 +28,6 @@ public class Disponibilite extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private JTable table;
-
 	/**
 	 * Launch the application.
 	 */
