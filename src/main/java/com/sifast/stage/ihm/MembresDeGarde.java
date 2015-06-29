@@ -17,119 +17,108 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
+import com.sifast.stage.classe.ButtonRenderer;
+
 public class MembresDeGarde extends JFrame {
-		private JPanel contentPane;
+	private JPanel contentPane;
 
-		public MembresDeGarde() {
+	public MembresDeGarde() {
+		
+		// System.out.println(AjouterPlanning.getNbDoc().getValue());
 
-			// System.out.println(AjouterPlanning.getNbDoc().getValue());
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1000, 600);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 
-			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			setBounds(100, 100, 1000, 600);
-			contentPane = new JPanel();
-			contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-			setContentPane(contentPane);
-			contentPane.setLayout(null);
+		// text
+		JTextArea textArea = new JTextArea("Membre de plannning de garde (du");
+		// + plan.getDateDebut().getDate().toInstant().toString()
+		// .substring(0, 10)
+		// + " au"
+		// + plan.getDateFin().getDate().toInstant().toString()
+		// .substring(0, 10) + ")");
+		textArea.setFont(new Font("Myanmar Text", Font.ITALIC, 20));
+		textArea.setEditable(false);
+		textArea.setBounds(30, 27, 926, 48);
+		contentPane.add(textArea);
 
-			// text
-			JTextArea textArea = new JTextArea("Membre de plannning de garde (du");
-			// + plan.getDateDebut().getDate().toInstant().toString()
-			// .substring(0, 10)
-			// + " au"
-			// + plan.getDateFin().getDate().toInstant().toString()
-			// .substring(0, 10) + ")");
-			textArea.setFont(new Font("Myanmar Text", Font.ITALIC, 20));
-			textArea.setEditable(false);
-			textArea.setBounds(30, 27, 926, 48);
-			contentPane.add(textArea);
+		// table
 
-			// table
+		Object[][] data = null;
+		String[] colomname = { "membre",
+				"nombre de garde maximale par semaine", "Disponibilité" };
+		DefaultTableModel model = new DefaultTableModel(data, colomname);
+		JTable table = new JTable(model);
+		 
+	
 
-			Object[][] data = null;
-			String[] colomname = { "membre",
-					"nombre de garde maximale par semaine", "Disponibilité" };
-			DefaultTableModel model = new DefaultTableModel(data, colomname);
-			JTable table = new JTable(model);
+		table.setBackground(Color.LIGHT_GRAY);
+		table.setForeground(Color.black);
+		Font font = new Font("", 1, 22);
+		table.setFont(font);
+		table.setRowHeight(30);
+		// JScrollPane
+		JScrollPane pane = new JScrollPane(table);
+		pane.setEnabled(false);
+		pane.setBounds(43, 172, 913, 258);
 
-			table.setBackground(Color.LIGHT_GRAY);
-			table.setForeground(Color.black);
-			Font font = new Font("", 1, 22);
-			table.setFont(font);
-			table.setRowHeight(30);
+		contentPane.add(pane);
 
-			// JScrollPane
-			JScrollPane pane = new JScrollPane(table);
-			pane.setBounds(43, 172, 913, 258);
+		// bouton ajouter
+		Object[] row = new Object[3];
+		JButton btnAdd = new JButton("Ajouter membre");
+		btnAdd.setFont(new Font("Times New Roman", Font.PLAIN, 17));
+		btnAdd.setBounds(787, 102, 169, 42);
+		contentPane.add(btnAdd);
+		final String[] items = { "1", "2", "3", "4", "5", "6" };
+		
+		btnAdd.addActionListener(new ActionListener() {
 
-			contentPane.add(pane);
+			public void actionPerformed(ActionEvent e) {
 
-			// bouton ajouter
-			Object[] row = new Object[3];
-			JButton btnAdd = new JButton("Ajouter membre");
-			btnAdd.setFont(new Font("Times New Roman", Font.PLAIN, 17));
-			btnAdd.setBounds(787, 102, 169, 42);
-			contentPane.add(btnAdd);
-			final String[] items = { "1", "2", "3", "4", "5", "6" };
-			btnAdd.addActionListener(new ActionListener() {
+				JButton btn = new JButton("Ajouter membre");
 
-				public void actionPerformed(ActionEvent e) {
-					//CTRL + SHIFT + O pour générer les imports
-					 class TableComponent extends DefaultTableCellRenderer {
+				TableColumn nbrGardeColumn = table.getColumnModel()
+						.getColumn(1);
+				TableColumn dispoColumn = table.getColumnModel()
+						.getColumn(2);
+				
+				JComboBox<String> comboBox = new JComboBox<String>(items);
 
-					  /**
-						 * 
-						 */
-						private static final long serialVersionUID = 1L;
+				nbrGardeColumn.setCellEditor(new DefaultCellEditor(comboBox));
+				dispoColumn.setCellRenderer(new ButtonRenderer());
+	
+				row[0] = new TextField().getText();
 
-					public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-					    //Si la valeur de la cellule est un JButton, on transtype cette valeur
-					    if (value instanceof JButton)
-					      return (JButton) value;
-					    else
-					      return this;
-					  }
-					}
-					table.setDefaultRenderer(JButton.class, new TableComponent());
+				model.addRow(row);
+			}
+		});
 
-					JButton btn= new JButton("Ajouter membre");
+		// bouton supprimer
 
-					TableColumn nbrGardeColumn = table.getColumnModel()
-							.getColumn(1);
-					TableColumn dispoColumn = table.getColumnModel()
-							.getColumn(2);
-					JComboBox<String> comboBox = new JComboBox<String>(items);
+		JButton btnSupprimerMembre = new JButton("Supprimer membre");
+		btnSupprimerMembre.setFont(new Font("Times New Roman", Font.PLAIN, 17));
+		btnSupprimerMembre.setBounds(610, 102, 169, 42);
+		contentPane.add(btnSupprimerMembre);
 
-					nbrGardeColumn.setCellEditor(new DefaultCellEditor(comboBox));			
+		btnSupprimerMembre.addActionListener(new ActionListener() {
 
-					row[0] = new TextField().getText();
-					row[2]= new Button();
-
-					model.addRow(row);
+			public void actionPerformed(ActionEvent e) {
+				int i = table.getSelectedRow();
+				if (i >= 0) {
+					model.removeRow(i);
+				} else {
+					System.out.println("Delete Error");
 				}
-			});
+			}
+		});
 
-			// bouton supprimer
-
-			JButton btnSupprimerMembre = new JButton("Supprimer membre");
-			btnSupprimerMembre.setFont(new Font("Times New Roman", Font.PLAIN, 17));
-			btnSupprimerMembre.setBounds(610, 102, 169, 42);
-			contentPane.add(btnSupprimerMembre);
-
-			btnSupprimerMembre.addActionListener(new ActionListener() {
-
-				public void actionPerformed(ActionEvent e) {
-					int i = table.getSelectedRow();
-					if (i >= 0) {
-						model.removeRow(i);
-					} else {
-						System.out.println("Delete Error");
-					}
-				}
-			});
-
-		}
 	}
+}
