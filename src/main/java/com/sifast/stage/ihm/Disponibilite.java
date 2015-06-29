@@ -121,9 +121,10 @@ public class Disponibilite extends JFrame {
 				
 				model.addRow(row);
 
-    		   
+				System.out.println(row[1]);
 			}
 		});
+		
 		btnAjouter.setBounds(169, 174, 89, 23);
 		contentPane.add(btnAjouter);
 		
