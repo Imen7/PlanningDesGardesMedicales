@@ -9,7 +9,6 @@ import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.table.TableCellRenderer;
 
-import com.sifast.stage.ihm.Disponibilité;
 
 public class ButtonRenderer implements TableCellRenderer 
 {     
@@ -32,8 +31,8 @@ public Component getTableCellRendererComponent(JTable table,
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Disponibilité frame =new Disponibilité();
-			frame.setVisible(true);
+			//Disponibilite frame =new Disponibilite();
+			// frame.setVisible(true);
 		}
 	});
     return button;     
