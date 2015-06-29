@@ -1,8 +1,6 @@
 package com.sifast.stage.ihm;
 
-import java.awt.Button;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
@@ -10,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -18,18 +17,17 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
-import com.sifast.stage.classe.ButtonRenderer;
+import com.sifast.stage.classe.ButtonEditor;
 
 public class MembresDeGarde extends JFrame {
 	private JPanel contentPane;
 
 	public MembresDeGarde() {
-		
-		// System.out.println(AjouterPlanning.getNbDoc().getValue());
 
+		// System.out.println(AjouterPlanning.getNbDoc().getValue());
+		setSize(1000, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 600);
 		contentPane = new JPanel();
@@ -56,8 +54,6 @@ public class MembresDeGarde extends JFrame {
 				"nombre de garde maximale par semaine", "Disponibilité" };
 		DefaultTableModel model = new DefaultTableModel(data, colomname);
 		JTable table = new JTable(model);
-		 
-	
 
 		table.setBackground(Color.LIGHT_GRAY);
 		table.setForeground(Color.black);
@@ -78,7 +74,7 @@ public class MembresDeGarde extends JFrame {
 		btnAdd.setBounds(787, 102, 169, 42);
 		contentPane.add(btnAdd);
 		final String[] items = { "1", "2", "3", "4", "5", "6" };
-		
+
 		btnAdd.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -87,14 +83,13 @@ public class MembresDeGarde extends JFrame {
 
 				TableColumn nbrGardeColumn = table.getColumnModel()
 						.getColumn(1);
-				TableColumn dispoColumn = table.getColumnModel()
-						.getColumn(2);
-				
+				TableColumn dispoColumn = table.getColumnModel().getColumn(2);
+
 				JComboBox<String> comboBox = new JComboBox<String>(items);
 
 				nbrGardeColumn.setCellEditor(new DefaultCellEditor(comboBox));
-				dispoColumn.setCellRenderer(new ButtonRenderer());
-	
+				dispoColumn.setCellEditor(new ButtonEditor(new JCheckBox()));
+				
 				row[0] = new TextField().getText();
 
 				model.addRow(row);

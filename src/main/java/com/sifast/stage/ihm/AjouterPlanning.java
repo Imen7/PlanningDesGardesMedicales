@@ -32,7 +32,7 @@ public class AjouterPlanning extends JFrame {
 				try {
 					AjouterPlanning frame = new AjouterPlanning();
 					frame.setVisible(true);
-					frame.setSize(1920, 1280);
+					frame.setSize(1000, 600);
 					frame.setLocationRelativeTo(null);
 					frame.setTitle("Ajouter Planning");
 				} catch (Exception e) {
@@ -109,10 +109,10 @@ public class AjouterPlanning extends JFrame {
 
 		butAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			//	new MembresDeGarde().setVisible(true);
- 
+				// new MembresDeGarde().setVisible(true);
+
 				MembresDeGarde frame = new MembresDeGarde();
-				frame.setSize(1920, 1280);
+				frame.setSize(1000, 600);
 				frame.setLocationRelativeTo(null);
 				frame.setTitle("Membres de garde");
 				frame.setVisible(true);

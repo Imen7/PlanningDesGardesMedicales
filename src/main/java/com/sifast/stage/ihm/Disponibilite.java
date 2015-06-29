@@ -3,6 +3,7 @@ package com.sifast.stage.ihm;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -15,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -37,6 +39,8 @@ public class Disponibilite extends JFrame {
 				try {
 					Disponibilite frame = new Disponibilite();
 					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -48,8 +52,9 @@ public class Disponibilite extends JFrame {
 	 * Create the frame.
 	 */
 	public Disponibilite() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 471);
+		setBounds(100, 100, 450, 498);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -121,5 +126,14 @@ public class Disponibilite extends JFrame {
 		});
 		btnAjouter.setBounds(169, 174, 89, 23);
 		contentPane.add(btnAjouter);
+		
+		JButton btnValider = new JButton("valider ");
+		btnValider.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnValider.setBounds(159, 429, 89, 23);
+		contentPane.add(btnValider);
 	}
 }
