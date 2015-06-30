@@ -17,9 +17,16 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+<<<<<<< HEAD
 import javax.swing.border.EmptyBorder;
 
 import com.sifast.stage.classe.PlanningGarde;
+=======
+import javax.swing.JButton;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+>>>>>>> bcd0f902ead611e6e5094308a0fdb9d98be5d935
 import com.toedter.calendar.JDateChooser;
 
 public class AjouterPlanning extends JFrame {
@@ -122,6 +129,7 @@ public class AjouterPlanning extends JFrame {
 				frame.setTitle("Membres de garde");
 				frame.setVisible(true);
 
+<<<<<<< HEAD
 				PlanningGarde plan = new PlanningGarde(textField.getText(),
 						dateDeb, dateFin);
 
@@ -136,6 +144,10 @@ public class AjouterPlanning extends JFrame {
 					calendar.add(Calendar.DATE, 1);
 					
 				}
+=======
+				//PlanningGarde plan = new PlanningGarde(textField.getText(),
+						//dateDeb, dateFin);
+>>>>>>> bcd0f902ead611e6e5094308a0fdb9d98be5d935
 
 			}
 		});
