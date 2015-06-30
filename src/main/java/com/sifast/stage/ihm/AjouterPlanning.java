@@ -15,7 +15,6 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 import com.toedter.calendar.JDateChooser;
 
 public class AjouterPlanning extends JFrame {
@@ -117,17 +116,8 @@ public class AjouterPlanning extends JFrame {
 				frame.setTitle("Membres de garde");
 				frame.setVisible(true);
 
-				/*
-				 * PlanningGarde plan = new PlanningGarde(textField.getText(),
-				 * dateDeb, dateFin);
-				 * 
-				 * textField_1.setText(plan.NomPlanning);
-				 * textField_2.setText(plan
-				 * .DateDebut.getDate().toInstant().toString().substring(0,
-				 * 10));
-				 * textField_3.setText(plan.DateFin.getDate().toInstant().toString
-				 * ().substring(0, 10));
-				 */
+				//PlanningGarde plan = new PlanningGarde(textField.getText(),
+						//dateDeb, dateFin);
 
 			}
 		});
