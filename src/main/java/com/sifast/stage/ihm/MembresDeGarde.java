@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import com.sifast.stage.classe.ButtonEditor;
+import com.sifast.stage.classe.Docteur;
 
 public class MembresDeGarde extends JFrame {
 	/**
@@ -83,7 +84,6 @@ public class MembresDeGarde extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 
-				JButton btn = new JButton("Ajouter membre");
 
 				TableColumn nbrGardeColumn = table.getColumnModel()
 						.getColumn(1);
@@ -97,7 +97,9 @@ public class MembresDeGarde extends JFrame {
 				row[0] = new TextField().getText();
 
 				model.addRow(row);
+				
 			}
+			
 		});
 
 		// bouton supprimer

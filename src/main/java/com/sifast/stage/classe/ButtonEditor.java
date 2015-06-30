@@ -18,7 +18,7 @@ public class ButtonEditor extends DefaultCellEditor {
 		super(checkBox);
 		button = new JButton();
 		button.setText("afficher disponibilité");
-
+button.setVisible(true);
 		button.setOpaque(true);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

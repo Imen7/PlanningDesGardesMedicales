@@ -17,16 +17,13 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
-<<<<<<< HEAD
 import javax.swing.border.EmptyBorder;
 
 import com.sifast.stage.classe.PlanningGarde;
-=======
 import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
->>>>>>> bcd0f902ead611e6e5094308a0fdb9d98be5d935
 import com.toedter.calendar.JDateChooser;
 
 public class AjouterPlanning extends JFrame {
@@ -129,7 +126,6 @@ public class AjouterPlanning extends JFrame {
 				frame.setTitle("Membres de garde");
 				frame.setVisible(true);
 
-<<<<<<< HEAD
 				PlanningGarde plan = new PlanningGarde(textField.getText(),
 						dateDeb, dateFin);
 
@@ -137,18 +133,15 @@ public class AjouterPlanning extends JFrame {
 				calendar.setTime(plan.getDateFin().getDate());
 				Calendar calMax = Calendar.getInstance();
 				calMax.setTime(plan.getDateDebut().getDate());
+				System.out.println((String.format("%1$td/%1$tm/%1$tY",
+						calendar)));
 				while (!(String.format("%1$td/%1$tm/%1$tY", calendar)
 						.equals(String.format("%1$td/%1$tm/%1$tY", calMax)))) {
+					calendar.add(Calendar.DATE, 1);
 					System.out.println((String.format("%1$td/%1$tm/%1$tY",
 							calendar)));
-					calendar.add(Calendar.DATE, 1);
 					
 				}
-=======
-				//PlanningGarde plan = new PlanningGarde(textField.getText(),
-						//dateDeb, dateFin);
->>>>>>> bcd0f902ead611e6e5094308a0fdb9d98be5d935
-
 			}
 		});
 
