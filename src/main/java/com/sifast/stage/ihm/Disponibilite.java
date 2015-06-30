@@ -21,7 +21,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JTable;
-
 public class Disponibilite extends JFrame {
 
 	/**
@@ -130,7 +129,11 @@ public class Disponibilite extends JFrame {
 		
 		JButton btnValider = new JButton("valider ");
 		btnValider.addActionListener(new ActionListener() {
+			
+			
 			public void actionPerformed(ActionEvent e) {
+			
+				
 				
 			}
 		});
