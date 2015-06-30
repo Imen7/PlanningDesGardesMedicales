@@ -7,17 +7,12 @@ import java.awt.event.ActionListener;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 import com.sifast.stage.ihm.Disponibilite;
 
 public class ButtonEditor extends DefaultCellEditor {
 	protected JButton button;
-
-	private String label;
-
-	private boolean isPushed;
 
 	public ButtonEditor(JCheckBox checkBox) {
 		super(checkBox);
@@ -38,10 +33,7 @@ public class ButtonEditor extends DefaultCellEditor {
 
 	public Component getTableCellEditorComponent(JTable table, Object value,
 			boolean isSelected, int row, int column) {
-		button.setForeground(table.getForeground());
-		button.setBackground(table.getBackground());
-
-		isPushed = true;
+	
 		return button;
 	}
 

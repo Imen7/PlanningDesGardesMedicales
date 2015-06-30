@@ -7,6 +7,7 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.CloseAction;
 import javax.swing.table.DefaultTableModel;
 
 import com.toedter.calendar.JDateChooser;
@@ -23,33 +24,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 public class Disponibilite extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Disponibilite frame = new Disponibilite();
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
 
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Disponibilite() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -90,8 +69,6 @@ public class Disponibilite extends JFrame {
 
 		table.setBackground(Color.LIGHT_GRAY);
 		table.setForeground(Color.black);
-		Font font = new Font("", 1, 22);
-		table.setFont(font);
 		table.setRowHeight(30);
 		
 
@@ -132,9 +109,6 @@ public class Disponibilite extends JFrame {
 			
 			
 			public void actionPerformed(ActionEvent e) {
-			
-				
-				
 			}
 		});
 		btnValider.setBounds(159, 429, 89, 23);

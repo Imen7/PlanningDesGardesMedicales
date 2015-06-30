@@ -3,8 +3,9 @@ package com.sifast.stage.classe;
 import com.toedter.calendar.JDateChooser;
 
 public class PlanningGarde {
+	int nombreDocteur ;
 	String NomPlanning;
-	JDateChooser DateDebut;
+	public JDateChooser DateDebut;
 	JDateChooser DateFin;
 
 	public PlanningGarde() {

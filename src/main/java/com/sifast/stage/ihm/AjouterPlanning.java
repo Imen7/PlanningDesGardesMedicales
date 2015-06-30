@@ -1,21 +1,25 @@
 package com.sifast.stage.ihm;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-
 import java.awt.EventQueue;
 import java.awt.Font;
-
-import javax.swing.JTextField;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.JButton;
-
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.border.EmptyBorder;
+
+import com.sifast.stage.classe.PlanningGarde;
 import com.toedter.calendar.JDateChooser;
 
 public class AjouterPlanning extends JFrame {
@@ -24,6 +28,7 @@ public class AjouterPlanning extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	public static JSpinner nbDoc;
+	private JTextField textField_2;
 
 	public static void main(String[] args) {
 
@@ -107,9 +112,9 @@ public class AjouterPlanning extends JFrame {
 		butAjouter.setBounds(421, 388, 200, 50);
 		contentPane.add(butAjouter);
 
+
 		butAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// new MembresDeGarde().setVisible(true);
 
 				MembresDeGarde frame = new MembresDeGarde();
 				frame.setSize(1000, 600);
@@ -117,17 +122,20 @@ public class AjouterPlanning extends JFrame {
 				frame.setTitle("Membres de garde");
 				frame.setVisible(true);
 
-				/*
-				 * PlanningGarde plan = new PlanningGarde(textField.getText(),
-				 * dateDeb, dateFin);
-				 * 
-				 * textField_1.setText(plan.NomPlanning);
-				 * textField_2.setText(plan
-				 * .DateDebut.getDate().toInstant().toString().substring(0,
-				 * 10));
-				 * textField_3.setText(plan.DateFin.getDate().toInstant().toString
-				 * ().substring(0, 10));
-				 */
+				PlanningGarde plan = new PlanningGarde(textField.getText(),
+						dateDeb, dateFin);
+
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(plan.getDateFin().getDate());
+				Calendar calMax = Calendar.getInstance();
+				calMax.setTime(plan.getDateDebut().getDate());
+				while (!(String.format("%1$td/%1$tm/%1$tY", calendar)
+						.equals(String.format("%1$td/%1$tm/%1$tY", calMax)))) {
+					System.out.println((String.format("%1$td/%1$tm/%1$tY",
+							calendar)));
+					calendar.add(Calendar.DATE, 1);
+					
+				}
 
 			}
 		});
@@ -137,5 +145,4 @@ public class AjouterPlanning extends JFrame {
 	public static JSpinner getNbDoc() {
 		return nbDoc;
 	}
-
 }
