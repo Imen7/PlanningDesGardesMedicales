@@ -1,35 +1,31 @@
 package com.sifast.stage.ihm;
 
 import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.CloseAction;
 import javax.swing.table.DefaultTableModel;
 
+import com.sifast.stage.classe.PrefEnum;
+import com.sifast.stage.classe.Preference;
 import com.toedter.calendar.JDateChooser;
-
-import javax.swing.JRadioButton;
-import javax.swing.JButton;
-import javax.swing.ButtonGroup;
-import javax.swing.JScrollPane;
-import javax.swing.JLabel;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-import javax.swing.JTable;
 public class Disponibilite extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-
-
+	
 	public Disponibilite() {
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 498);
@@ -77,7 +73,7 @@ public class Disponibilite extends JFrame {
 		pane.setBounds(46, 221, 363, 197);
 
 		contentPane.add(pane);
-		String[] row = new String[2];
+		Object[] row = new Object[2];
 
 		JButton btnAjouter = new JButton("Ajouter");
 		btnAjouter.addActionListener(new ActionListener() {
@@ -85,19 +81,18 @@ public class Disponibilite extends JFrame {
 				row[0] = dateDispo.getDate().toInstant().toString().substring(0,10);
 				
 				if (rbDispo.isSelected()){
-				row[1] = "Disponible"; 
+				row[1] = PrefEnum.dispo_ok; 
 				}
 				else if (rbDispoBut.isSelected()){
-					row[1] = "Disponible mais !!"; 
+					row[1] = PrefEnum.dispo_but; 
 					}
 				else if (rbNotDispo.isSelected()){
-					row[1] = "n'est pas disponible"; 
+					row[1] = PrefEnum.not_dispo; 
 					}
 				
-				
 				model.addRow(row);
-
-				System.out.println(row[1]);
+               
+				Preference.getMapPerference().put(dateDispo.getDate(),(PrefEnum) row[1]);
 			}
 		});
 		
@@ -109,9 +104,13 @@ public class Disponibilite extends JFrame {
 			
 			
 			public void actionPerformed(ActionEvent e) {
+
 			}
+			
 		});
 		btnValider.setBounds(159, 429, 89, 23);
 		contentPane.add(btnValider);
+
 	}
+	
 }

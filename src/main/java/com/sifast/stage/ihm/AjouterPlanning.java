@@ -32,7 +32,10 @@ public class AjouterPlanning extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	public static JSpinner nbDoc;
+	public static JDateChooser dateDebut;
+	public static JDateChooser dateFin;
 	private JTextField textField_2;
+	
 
 	public static void main(String[] args) {
 
@@ -100,15 +103,17 @@ public class AjouterPlanning extends JFrame {
 		nbDoc.setBounds(516, 277, 37, 20);
 		contentPane.add(nbDoc);
 
-		JDateChooser dateDeb = new JDateChooser();
-		dateDeb.setDateFormatString("dd-MM-yyyy");
-		dateDeb.setBounds(516, 218, 97, 20);
-		contentPane.add(dateDeb);
+		JDateChooser dateD = new JDateChooser();
+		dateD.setDateFormatString("dd-MM-yyyy");
+		dateD.setBounds(516, 218, 97, 20);
+		contentPane.add(dateD);
+		dateDebut=dateD;
 
-		JDateChooser dateFin = new JDateChooser();
-		dateFin.setDateFormatString("dd-MM-yyyy");
-		dateFin.setBounds(516, 159, 97, 20);
-		contentPane.add(dateFin);
+		JDateChooser dateF = new JDateChooser();
+		dateF.setDateFormatString("dd-MM-yyyy");
+		dateF.setBounds(516, 159, 97, 20);
+		contentPane.add(dateF);
+		dateFin= dateF;
 
 		JButton butAjouter = new JButton("Ajouter");
 		butAjouter.setBounds(421, 388, 200, 50);
@@ -126,27 +131,19 @@ public class AjouterPlanning extends JFrame {
 				frame.setTitle("Membres de garde");
 				frame.setVisible(true);
 
-				PlanningGarde plan = new PlanningGarde(textField.getText(),
-						dateDeb, dateFin);
-
-				Calendar calendar = Calendar.getInstance();
-				calendar.setTime(plan.getDateFin().getDate());
-				Calendar calMax = Calendar.getInstance();
-				calMax.setTime(plan.getDateDebut().getDate());
-				System.out.println((String.format("%1$td/%1$tm/%1$tY",
-						calendar)));
-				while (!(String.format("%1$td/%1$tm/%1$tY", calendar)
-						.equals(String.format("%1$td/%1$tm/%1$tY", calMax)))) {
-					calendar.add(Calendar.DATE, 1);
-					System.out.println((String.format("%1$td/%1$tm/%1$tY",
-							calendar)));
-					
-				}
+				
 			}
 		});
 
 	}
+	public static JDateChooser getDateDebut() {
+		return dateDebut;
+	}
 
+
+	public static JDateChooser getDateFin() {
+		return dateFin;
+	}
 	public static JSpinner getNbDoc() {
 		return nbDoc;
 	}

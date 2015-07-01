@@ -5,7 +5,7 @@ import com.toedter.calendar.JDateChooser;
 public class PlanningGarde {
 	int nombreDocteur ;
 	String NomPlanning;
-	public JDateChooser DateDebut;
+    JDateChooser DateDebut;
 	JDateChooser DateFin;
 
 	public PlanningGarde() {

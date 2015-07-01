@@ -7,34 +7,50 @@ import java.awt.event.ActionListener;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
+import com.sifast.stage.ihm.AjouterPlanning;
 import com.sifast.stage.ihm.Disponibilite;
 
 public class ButtonEditor extends DefaultCellEditor {
-	protected JButton button;
+	  protected JButton button;
 
-	public ButtonEditor(JCheckBox checkBox) {
-		super(checkBox);
-		button = new JButton();
-		button.setText("afficher disponibilité");
-button.setVisible(true);
-		button.setOpaque(true);
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+	  private String label;
 
-				Disponibilite frame = new Disponibilite();
+	  private boolean isPushed;
+
+	  public ButtonEditor(JCheckBox checkBox) {
+	    super(checkBox);
+	    button = new JButton();
+	    button.setOpaque(true);
+	    button.addActionListener(new ActionListener() {
+	      public void actionPerformed(ActionEvent e) {
+	    	  Disponibilite frame = new Disponibilite();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 
-			}
-		});
-	}
+	      }
+	    });
+	  }
 
-	public Component getTableCellEditorComponent(JTable table, Object value,
-			boolean isSelected, int row, int column) {
-	
-		return button;
-	}
+	  public Component getTableCellEditorComponent(JTable table, Object value,
+	      boolean isSelected, int row, int column) {
+	      button.setForeground(table.getSelectionForeground());
+	      button.setBackground(table.getSelectionBackground());
+	      button.setForeground(table.getForeground());
+	      button.setBackground(table.getBackground());
+	    
+	    label = (value == null) ? "afficher disponibilité" : value.toString();
+	    button.setText(label);
+	    isPushed = true;
+	    return button;
+	  }
 
-}
+	  public Object getCellEditorValue() {
+	   
+	    return new String(label);
+	  }
+
+	 
+	}

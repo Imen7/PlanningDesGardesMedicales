@@ -1,18 +1,18 @@
 package com.sifast.stage.classe;
 
+import java.util.Date;
+import java.util.HashMap;
 
 public class Docteur {
 
 	String nom;
-	Preference preference;
+	public static HashMap<String,  HashMap<Date, PrefEnum>> map=new HashMap<String,  HashMap<Date, PrefEnum>>();
 
-	public Preference getPreference() {
-		return preference;
+	
+	public HashMap<String,  HashMap<Date, PrefEnum>> getMap() {
+		return map;
 	}
 
-	public void setPreference(Preference preference) {
-		this.preference = preference;
-	}
 
 	public String getNom() {
 		return nom;
