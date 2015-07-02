@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Docteur {
 
-	String nom;
+	private String nom;
 	private Preference preference = new Preference();
 	public static HashMap<String, Preference> map = new HashMap<String,Preference>();
 

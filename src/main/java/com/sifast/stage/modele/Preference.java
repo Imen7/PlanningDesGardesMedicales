@@ -15,20 +15,17 @@ public class Preference {
 
 	public Preference(HashMap<Date, PrefEnum> mapPerference) {
 		super();
-		this.mapPerference = mapPerference;
+		this.setMapPerference(mapPerference);
 	}
 	
 	// methodes set,get
 
-	public HashMap<Date, PrefEnum> setPerference() {
-		return mapPerference;
-	}
-	
-	public HashMap<Date, PrefEnum> getPerference() {
+
+	public HashMap<Date, PrefEnum> getMapPerference() {
 		return mapPerference;
 	}
 
-	public String ToString(){
-		return  mapPerference.toString();
+	public void setMapPerference(HashMap<Date, PrefEnum> mapPerference) {
+		this.mapPerference = mapPerference;
 	}
 }

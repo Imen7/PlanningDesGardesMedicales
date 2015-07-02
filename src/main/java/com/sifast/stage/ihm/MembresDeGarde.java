@@ -23,6 +23,8 @@ import javax.swing.table.TableColumn;
 import com.sifast.stage.modele.ButtonEditor;
 import com.sifast.stage.modele.ButtonRenderer;
 
+import javax.swing.JTextField;
+
 public class MembresDeGarde extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -70,11 +72,14 @@ public class MembresDeGarde extends JFrame {
 		btnAdd.setBounds(787, 102, 169, 42);
 		contentPane.add(btnAdd);
 		final String[] items = { "1", "2", "3", "4", "5", "6" };
-		// int numeroLigne = 0;
+	//	int numeroLigne = 0;
 		btnAdd.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				
+				JTextField text = new JTextField();
+				text.setBounds(282, 99, 86, 20);
+				contentPane.add(text);
+				text.setColumns(10);
 				ButtonEditor bt = new ButtonEditor(new JCheckBox());
 				JComboBox<String> comboBox = new JComboBox<String>(items);
 				
@@ -83,16 +88,11 @@ public class MembresDeGarde extends JFrame {
 
 				nbrGardeColumn.setCellEditor(new DefaultCellEditor(comboBox));
 				dispoColumn.setCellRenderer(new ButtonRenderer());
-				dispoColumn.setCellEditor(bt);
-				
-				
-				
-				//dispoColumn.setCellEditor();
-
+				dispoColumn.setCellEditor(bt);			
 				model.addRow(row);
-                 			
-				//System.out.println(bt.preference.toString());
-				
+		
+			//	System.out.println(bt.preference);
+
 			//Docteur.getMap().put((String) table.getValueAt(numeroLigne, 0), bt.preference);
 				//System.out.println(Docteur.getMap().toString());
 
@@ -127,16 +127,17 @@ public class MembresDeGarde extends JFrame {
 		contentPane.add(btnPlanning);
 		btnPlanning.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println(table.getValueAt(0, 0));
 
 				Calendar calendar = Calendar.getInstance();
 				calendar.setTime(AjouterPlanning.plan.getDateFin().getDate());
 				Calendar calMax = Calendar.getInstance();
 				calMax.setTime(AjouterPlanning.plan.getDateDebut().getDate());
 
-				//System.out.println("planning" + (String.format("%1$td/%1$tm/%1$tY", calendar)));
+				System.out.println("planning" + (String.format("%1$td/%1$tm/%1$tY", calendar)));
 				while (!(String.format("%1$td/%1$tm/%1$tY", calendar).equals(String.format("%1$td/%1$tm/%1$tY", calMax)))) {
 					calendar.add(Calendar.DATE, 1);
-				//	System.out.println((String.format("%1$td/%1$tm/%1$tY", calendar)));
+					System.out.println((String.format("%1$td/%1$tm/%1$tY", calendar)));
 
 				}
 			//	System.out.println("static map (docteur,pref)" + Docteur.map.toString());

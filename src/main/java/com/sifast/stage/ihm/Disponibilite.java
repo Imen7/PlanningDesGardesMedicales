@@ -24,7 +24,7 @@ public class Disponibilite extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private ButtonGroup buttonGroup = new ButtonGroup();
-	private Preference preference;
+	private Preference preference = new Preference();
 
 	// constructeur
 
@@ -100,9 +100,7 @@ public class Disponibilite extends JFrame {
 				}
 				model.addRow(row);
 
-				
-		//		preference.getPerference().put(dateDispo.getDate(), (PrefEnum) row[1]);
-
+				preference.getMapPerference().put(dateDispo.getDate(), (PrefEnum) row[1]);
 
 			}
 		});
@@ -122,7 +120,7 @@ public class Disponibilite extends JFrame {
 	}
 
 	// preference set,get
-	
+
 	public Preference getPreference() {
 		return preference;
 	}

@@ -20,7 +20,7 @@ public class AjouterPlanning extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
-	public static PlanningGarde plan= new PlanningGarde() ;
+	public static PlanningGarde plan = new PlanningGarde();
 
 	// classe principale
 	public static void main(String[] args) {
