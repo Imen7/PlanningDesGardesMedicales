@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
+
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -18,8 +19,9 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import com.sifast.stage.classe.ButtonEditor;
-import com.sifast.stage.classe.Docteur;
+
+import com.sifast.stage.modele.ButtonEditor;
+import com.sifast.stage.modele.ButtonRenderer;
 
 public class MembresDeGarde extends JFrame {
 
@@ -68,21 +70,31 @@ public class MembresDeGarde extends JFrame {
 		btnAdd.setBounds(787, 102, 169, 42);
 		contentPane.add(btnAdd);
 		final String[] items = { "1", "2", "3", "4", "5", "6" };
-		int numeroLigne = 0;
+		// int numeroLigne = 0;
 		btnAdd.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-
+				
+				ButtonEditor bt = new ButtonEditor(new JCheckBox());
+				JComboBox<String> comboBox = new JComboBox<String>(items);
+				
 				TableColumn nbrGardeColumn = table.getColumnModel().getColumn(1);
 				TableColumn dispoColumn = table.getColumnModel().getColumn(2);
-				ButtonEditor bt= new ButtonEditor(new JCheckBox());
-				JComboBox<String> comboBox = new JComboBox<String>(items);
+
 				nbrGardeColumn.setCellEditor(new DefaultCellEditor(comboBox));
+				dispoColumn.setCellRenderer(new ButtonRenderer());
 				dispoColumn.setCellEditor(bt);
-				model.addRow(row);
 				
-				Docteur.getMap().put((String) table.getValueAt(numeroLigne, 0),	bt.preference);
-				System.out.println(Docteur.getMap().toString());
+				
+				
+				//dispoColumn.setCellEditor();
+
+				model.addRow(row);
+                 			
+				//System.out.println(bt.preference.toString());
+				
+			//Docteur.getMap().put((String) table.getValueAt(numeroLigne, 0), bt.preference);
+				//System.out.println(Docteur.getMap().toString());
 
 			}
 
@@ -120,15 +132,14 @@ public class MembresDeGarde extends JFrame {
 				calendar.setTime(AjouterPlanning.plan.getDateFin().getDate());
 				Calendar calMax = Calendar.getInstance();
 				calMax.setTime(AjouterPlanning.plan.getDateDebut().getDate());
-				// System.out.println((String.format("%1$td/%1$tm/%1$tY",
-				// calendar)));
+
+				//System.out.println("planning" + (String.format("%1$td/%1$tm/%1$tY", calendar)));
 				while (!(String.format("%1$td/%1$tm/%1$tY", calendar).equals(String.format("%1$td/%1$tm/%1$tY", calMax)))) {
 					calendar.add(Calendar.DATE, 1);
-					// System.out.println((String.format("%1$td/%1$tm/%1$tY",
-					// calendar))+ Docteur.map.toString());
-					System.out.println(Docteur.map.toString());
+				//	System.out.println((String.format("%1$td/%1$tm/%1$tY", calendar)));
 
 				}
+			//	System.out.println("static map (docteur,pref)" + Docteur.map.toString());
 
 			}
 		});

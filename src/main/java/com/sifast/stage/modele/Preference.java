@@ -1,4 +1,4 @@
-package com.sifast.stage.classe;
+package com.sifast.stage.modele;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -28,4 +28,7 @@ public class Preference {
 		return mapPerference;
 	}
 
+	public String ToString(){
+		return  mapPerference.toString();
+	}
 }

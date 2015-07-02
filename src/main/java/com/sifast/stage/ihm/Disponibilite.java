@@ -3,6 +3,7 @@ package com.sifast.stage.ihm;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,8 +14,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import com.sifast.stage.classe.PrefEnum;
-import com.sifast.stage.classe.Preference;
+
+import com.sifast.stage.modele.PrefEnum;
+import com.sifast.stage.modele.Preference;
 import com.toedter.calendar.JDateChooser;
 
 public class Disponibilite extends JFrame {
@@ -97,7 +99,11 @@ public class Disponibilite extends JFrame {
 					row[1] = PrefEnum.not_dispo;
 				}
 				model.addRow(row);
-				preference.getPerference().put(dateDispo.getDate(), (PrefEnum) row[1]);
+
+				
+		//		preference.getPerference().put(dateDispo.getDate(), (PrefEnum) row[1]);
+
+
 			}
 		});
 

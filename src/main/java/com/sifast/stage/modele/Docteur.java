@@ -1,4 +1,4 @@
-package com.sifast.stage.classe;
+package com.sifast.stage.modele;
 
 import java.util.HashMap;
 
