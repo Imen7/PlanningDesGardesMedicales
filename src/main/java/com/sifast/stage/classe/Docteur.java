@@ -1,18 +1,14 @@
 package com.sifast.stage.classe;
 
-import java.util.Date;
 import java.util.HashMap;
 
 public class Docteur {
 
 	String nom;
-	public static HashMap<String,  HashMap<Date, PrefEnum>> map=new HashMap<String,  HashMap<Date, PrefEnum>>();
+	private Preference preference = new Preference();
+	public static HashMap<String, Preference> map = new HashMap<String,Preference>();
 
-	
-	public HashMap<String,  HashMap<Date, PrefEnum>> getMap() {
-		return map;
-	}
-
+	// Nom set, get
 
 	public String getNom() {
 		return nom;
@@ -22,4 +18,25 @@ public class Docteur {
 		this.nom = nom;
 	}
 
+	// preference set,get
+
+	public void setPreference(Preference preference) {
+		this.preference = preference;
+	}
+
+	public Preference getPreference() {
+		return preference;
+	}
+
+	// static map ( nom, preference ) set,get
+	
+	public static HashMap<String, Preference> getMap() {
+		return map;
+	}
+
+	public static void setMap(HashMap<String, Preference> map) {
+		Docteur.map = map;
+	}
+
+	
 }

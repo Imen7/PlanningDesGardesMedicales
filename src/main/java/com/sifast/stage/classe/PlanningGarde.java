@@ -3,23 +3,24 @@ package com.sifast.stage.classe;
 import com.toedter.calendar.JDateChooser;
 
 public class PlanningGarde {
-	int nombreDocteur ;
+
 	String NomPlanning;
-    JDateChooser DateDebut;
+	JDateChooser DateDebut;
 	JDateChooser DateFin;
 
+	// Constructeurs
+	
 	public PlanningGarde() {
-		super();
 	}
 
-	public PlanningGarde(String NomPlanning, JDateChooser DateDebut,
-			JDateChooser DateFin) {
+	public PlanningGarde(String NomPlanning, JDateChooser DateDebut, JDateChooser DateFin) {
 		this.NomPlanning = NomPlanning;
 		this.DateDebut = DateDebut;
 		this.DateFin = DateFin;
-
 	}
 
+	// Methodes set,get
+	
 	public String getNomPlanning() {
 		return NomPlanning;
 	}
