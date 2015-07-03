@@ -47,7 +47,7 @@ public class Disponibilite extends JFrame {
 		// choisir la date
 
 		JDateChooser dateDispo = new JDateChooser();
-		dateDispo.setBounds(161, 87, 87, 20);
+		dateDispo.setBounds(143, 87, 105, 20);
 		contentPane.add(dateDispo);
 
 		// choisir de preference (dispo,dispo_but,dispo_ok)
@@ -91,7 +91,7 @@ public class Disponibilite extends JFrame {
 		Preference pref = new Preference();
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				row[0] = dateDispo.getDate().toInstant().toString().substring(0, 10);
+				row[0] = String.format("%1$td/%1$tm/%1$tY", dateDispo.getDate());
 
 				if (rbDispo.isSelected()) {
 					row[1] = PrefEnum.dispo_ok;
