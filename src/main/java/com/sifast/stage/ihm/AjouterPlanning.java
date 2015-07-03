@@ -20,6 +20,7 @@ public class AjouterPlanning extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
+	
 	public static PlanningGarde plan = new PlanningGarde();
 
 	// classe principale
@@ -75,10 +76,10 @@ public class AjouterPlanning extends JFrame {
 		lblDateDeDbut.setBounds(344, 165, 110, 14);
 		contentPane.add(lblDateDeDbut);
 
-		JDateChooser dateD = new JDateChooser();
-		dateD.setDateFormatString("dd-MM-yyyy");
-		dateD.setBounds(516, 218, 97, 20);
-		contentPane.add(dateD);
+		JDateChooser dateF = new JDateChooser();
+		dateF.setDateFormatString("dd-MM-yyyy");
+		dateF.setBounds(516, 218, 97, 20);
+		contentPane.add(dateF);
 
 		// Date fin
 
@@ -87,10 +88,10 @@ public class AjouterPlanning extends JFrame {
 		lblDateDeFin.setBounds(344, 218, 97, 14);
 		contentPane.add(lblDateDeFin);
 
-		JDateChooser dateF = new JDateChooser();
-		dateF.setDateFormatString("dd-MM-yyyy");
-		dateF.setBounds(516, 159, 97, 20);
-		contentPane.add(dateF);
+		JDateChooser dateD = new JDateChooser();
+		dateD.setDateFormatString("dd-MM-yyyy");
+		dateD.setBounds(516, 159, 97, 20);
+		contentPane.add(dateD);
 		plan.setDateDebut(dateD);
 		plan.setDateFin(dateF);
 		plan.setNomPlanning(textField.getText());
