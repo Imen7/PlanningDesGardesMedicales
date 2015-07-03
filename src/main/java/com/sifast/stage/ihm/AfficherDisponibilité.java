@@ -1,8 +1,9 @@
-package com.sifast.stage.modele;
+package com.sifast.stage.ihm;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
@@ -10,24 +11,25 @@ import javax.swing.JCheckBox;
 import javax.swing.JTable;
 
 import com.sifast.stage.ihm.Disponibilite;
+import com.sifast.stage.modele.Preference;
 
-public class ButtonEditor extends DefaultCellEditor {
+public class AfficherDisponibilité extends DefaultCellEditor {
 
 	private static final long serialVersionUID = 1L;
 
 	protected JButton button;
-    public Preference preference;
+	public ArrayList<Preference> preference;
 	private String label;
 
 	private boolean isPushed;
 
-	public ButtonEditor(JCheckBox checkBox) {
+	public AfficherDisponibilité(JCheckBox checkBox) {
 		super(checkBox);
 		button = new JButton();
 		button.setOpaque(true);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			//	System.out.println(preference);
+				// System.out.println(preference);
 				fireEditingStopped();
 
 			}
@@ -49,12 +51,12 @@ public class ButtonEditor extends DefaultCellEditor {
 	}
 
 	public Object getCellEditorValue() {
+
 		if (isPushed) {
 			Disponibilite frame = new Disponibilite();
+
 			frame.setVisible(true);
 			frame.setLocationRelativeTo(null);
-			preference=frame.getPreference();
-		//	System.out.println(preference.getMapPerference().toString());
 
 		}
 		isPushed = false;
@@ -66,11 +68,11 @@ public class ButtonEditor extends DefaultCellEditor {
 		return super.stopCellEditing();
 	}
 
-	public Preference getPreference() {
+	public ArrayList<Preference> getPreference() {
 		return preference;
 	}
 
-	public void setPreference(Preference preference) {
+	public void setPreference(ArrayList<Preference> preference) {
 		this.preference = preference;
 	}
 

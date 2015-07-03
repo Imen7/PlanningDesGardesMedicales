@@ -3,6 +3,7 @@ package com.sifast.stage.ihm;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -24,7 +25,7 @@ public class Disponibilite extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private ButtonGroup buttonGroup = new ButtonGroup();
-	private Preference preference = new Preference();
+	private ArrayList<Preference> preference = new ArrayList<Preference>();
 
 	// constructeur
 
@@ -87,6 +88,7 @@ public class Disponibilite extends JFrame {
 		btnAjouter.setBounds(169, 174, 89, 23);
 		contentPane.add(btnAjouter);
 		Object[] row = new Object[2];
+		Preference pref = new Preference();
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				row[0] = dateDispo.getDate().toInstant().toString().substring(0, 10);
@@ -99,8 +101,12 @@ public class Disponibilite extends JFrame {
 					row[1] = PrefEnum.not_dispo;
 				}
 				model.addRow(row);
+				pref.setDate(dateDispo.getDate());
+				pref.setPrefenum((PrefEnum) row[1]);
 
-				preference.getMapPerference().put(dateDispo.getDate(), (PrefEnum) row[1]);
+				preference.add(pref);
+				System.out.println("les prefernece ");
+				System.out.println(pref.getDate()+"  "+pref.getPrefenum());
 
 			}
 		});
@@ -113,6 +119,8 @@ public class Disponibilite extends JFrame {
 		btnValider.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				
+				setVisible(false);
 			}
 
 		});
@@ -121,11 +129,11 @@ public class Disponibilite extends JFrame {
 
 	// preference set,get
 
-	public Preference getPreference() {
+	public ArrayList<Preference> getPreference() {
 		return preference;
 	}
 
-	public void setPreference(Preference preference) {
+	public void setPreference(ArrayList<Preference> preference) {
 		this.preference = preference;
 	}
 

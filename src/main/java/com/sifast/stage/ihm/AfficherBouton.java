@@ -1,4 +1,4 @@
-package com.sifast.stage.modele;
+package com.sifast.stage.ihm;
 
 import java.awt.Component;
 
@@ -7,14 +7,14 @@ import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.table.TableCellRenderer;
 
-public class ButtonRenderer extends JButton implements TableCellRenderer {
+public class AfficherBouton extends JButton implements TableCellRenderer {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public ButtonRenderer() {
+	public AfficherBouton() {
 	    setOpaque(true);
 	  }
 

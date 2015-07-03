@@ -1,14 +1,22 @@
 package com.sifast.stage.modele;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Docteur {
 
 	private String nom;
-	private Preference preference = new Preference();
-	public static HashMap<String, Preference> map = new HashMap<String,Preference>();
-
+	private ArrayList<Preference> preference=new ArrayList<Preference>();
+	
+	//constructeur
+	
+	public Docteur(String nom, ArrayList<Preference> preference) {
+		super();
+		this.nom = nom;
+		this.preference = preference;
+	}
+	
 	// Nom set, get
+
 
 	public String getNom() {
 		return nom;
@@ -18,25 +26,17 @@ public class Docteur {
 		this.nom = nom;
 	}
 
+
 	// preference set,get
 
-	public void setPreference(Preference preference) {
-		this.preference = preference;
-	}
-
-	public Preference getPreference() {
+	public ArrayList<Preference> getPreference() {
 		return preference;
 	}
 
-	// static map ( nom, preference ) set,get
+	public void setPreference(ArrayList<Preference> preference) {
+		this.preference = preference;
+	}
+
 	
-	public static HashMap<String, Preference> getMap() {
-		return map;
-	}
-
-	public static void setMap(HashMap<String, Preference> map) {
-		Docteur.map = map;
-	}
-
 	
 }
