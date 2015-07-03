@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,6 +15,8 @@ import javax.swing.border.EmptyBorder;
 
 import com.sifast.stage.modele.PlanningGarde;
 import com.toedter.calendar.JDateChooser;
+
+import javax.swing.ImageIcon;
 
 public class AjouterPlanning extends JFrame {
 
@@ -96,6 +99,26 @@ public class AjouterPlanning extends JFrame {
 		plan.setDateFin(dateF);
 		plan.setNomPlanning(textField.getText());
 
+		// lablel de saisie de controle
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon("C:\\Users\\imen\\Downloads\\bouton.jpg"));
+		label.setBounds(684, 101, 20, 20);
+		label.setVisible(false);
+		contentPane.add(label);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon("C:\\Users\\imen\\Downloads\\bouton.jpg"));
+		label_1.setBounds(635, 159, 20, 20);
+		label_1.setVisible(false);
+		contentPane.add(label_1);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\imen\\Downloads\\bouton.jpg"));
+		lblNewLabel.setBounds(635, 218, 20, 20);
+		lblNewLabel.setVisible(false);
+		contentPane.add(lblNewLabel);
+		
 		// bouton ajouter
 
 		JButton butAjouter = new JButton("Ajouter");
@@ -103,19 +126,31 @@ public class AjouterPlanning extends JFrame {
 		contentPane.add(butAjouter);
 		butAjouter.setBounds(421, 388, 200, 50);
 		contentPane.add(butAjouter);
+		
+		
 
 		butAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				MembresDeGarde frame = new MembresDeGarde();
+				
+				if (textField.getText().equals(""))
+					label.setVisible(true);
+			
+				if (dateD.getDateFormatString().equals("dd-MM-yyyy"));
+					label_1.setVisible(true);
+					
+				if (dateF.getDateFormatString().equals("dd-MM-yyyy"))
+					lblNewLabel.setVisible(true);
+				
+				
+				{
+					MembresDeGarde frame = new MembresDeGarde();
 				frame.setSize(1000, 600);
 				frame.setLocationRelativeTo(null);
 				frame.setTitle("Membres de garde");
 				frame.setVisible(true);
-
+				}
 			}
 		});
 
 	}
-
 }
