@@ -42,7 +42,7 @@ public class MembresDeGarde extends JFrame {
 		JTextArea textArea = new JTextArea("Membre de garde du "+String.format("%1$td/%1$tm/%1$tY",AjouterPlanning.plan.getDateDebut().getDate())+" au "+String.format("%1$td/%1$tm/%1$tY",AjouterPlanning.plan.getDateFin().getDate()));
 		textArea.setFont(new Font("Myanmar Text", Font.ITALIC, 20));
 		textArea.setEditable(false);
-		textArea.setBounds(30, 27, 926, 48);
+		textArea.setBounds(279, 27, 453, 48);
 		contentPane.add(textArea);
 
 		// table
