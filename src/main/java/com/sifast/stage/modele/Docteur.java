@@ -9,9 +9,7 @@ public class Docteur {
 	
 	//constructeur
 	
-	public Docteur(String nom, ArrayList<Preference> preference) {
-		super();
-		this.nom = nom;
+	public Docteur( ArrayList<Preference> preference) {
 		this.preference = preference;
 	}
 	

@@ -21,11 +21,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import com.sifast.stage.modele.Docteur;
+
 public class MembresDeGarde extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	ArrayList<Object> docteurs = new ArrayList<Object>();
+	public static ArrayList<Docteur> docteurs = new ArrayList<Docteur>();
 	ArrayList<Object> dates = new ArrayList<Object>();
 
 	public MembresDeGarde() {
@@ -39,7 +41,8 @@ public class MembresDeGarde extends JFrame {
 		contentPane.setLayout(null);
 
 		// text
-		JTextArea textArea = new JTextArea("Membre de garde du "+String.format("%1$td/%1$tm/%1$tY",AjouterPlanning.plan.getDateDebut().getDate())+" au "+String.format("%1$td/%1$tm/%1$tY",AjouterPlanning.plan.getDateFin().getDate()));
+		JTextArea textArea = new JTextArea("Membre de garde du " + String.format("%1$td/%1$tm/%1$tY", AjouterPlanning.plan.getDateDebut().getDate()) + " au "
+				+ String.format("%1$td/%1$tm/%1$tY", AjouterPlanning.plan.getDateFin().getDate()));
 		textArea.setFont(new Font("Myanmar Text", Font.ITALIC, 20));
 		textArea.setEditable(false);
 		textArea.setBounds(279, 27, 453, 48);
@@ -48,8 +51,7 @@ public class MembresDeGarde extends JFrame {
 		// table
 
 		Object[][] data = null;
-		String[] colomname = { "membre",
-				"nombre de garde maximale par semaine", "Disponibilité" };
+		String[] colomname = { "membre", "nombre de garde maximale par semaine", "Disponibilité" };
 		DefaultTableModel model = new DefaultTableModel(data, colomname);
 		JTable table = new JTable(model);
 
@@ -74,29 +76,20 @@ public class MembresDeGarde extends JFrame {
 		btnAdd.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				model.addRow(row);
 
-				AfficherDisponibilité bt = new AfficherDisponibilité(
-						new JCheckBox());
+
+				AfficherDisponibilité bt = new AfficherDisponibilité(new JCheckBox());
 				JComboBox<String> comboBox = new JComboBox<String>(items);
-
-				TableColumn nbrGardeColumn = table.getColumnModel()
-						.getColumn(1);
+				
+				TableColumn nbrGardeColumn = table.getColumnModel().getColumn(1);
 				TableColumn dispoColumn = table.getColumnModel().getColumn(2);
 
 				nbrGardeColumn.setCellEditor(new DefaultCellEditor(comboBox));
 				dispoColumn.setCellRenderer(new AfficherBouton());
 				dispoColumn.setCellEditor(bt);
-
-				model.addRow(row);
-				
 				
 			
-			//	docteurs.add(table.getValueAt(table.getRowCount(), 0));
-
-
-				// Docteur docteur = new Docteur((String)
-				// table.getValueAt(table.getRowCount(), 0), bt.preference);
-				// docteurs.add(docteur);
 
 			}
 
@@ -132,9 +125,9 @@ public class MembresDeGarde extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			
 
-				docteurs.clear();
+				// docteurs.clear();
 				dates.clear();
-				
+
 				Calendar calendar = Calendar.getInstance();
 				calendar.setTime(AjouterPlanning.plan.getDateDebut().getDate());
 				Calendar calMax = Calendar.getInstance();
@@ -143,8 +136,7 @@ public class MembresDeGarde extends JFrame {
 				// System.out.println("planning" +
 				// (String.format("%1$td/%1$tm/%1$tY", calendar)));
 				dates.add(String.format("%1$td/%1$tm/%1$tY", calendar));
-				while (!(String.format("%1$td/%1$tm/%1$tY", calendar)
-						.equals(String.format("%1$td/%1$tm/%1$tY", calMax)))) {
+				while (!(String.format("%1$td/%1$tm/%1$tY", calendar).equals(String.format("%1$td/%1$tm/%1$tY", calMax)))) {
 					calendar.add(Calendar.DATE, 1);
 					// System.out.println((String.format("%1$td/%1$tm/%1$tY",
 					// calendar)));
@@ -152,17 +144,17 @@ public class MembresDeGarde extends JFrame {
 					dates.add(String.format("%1$td/%1$tm/%1$tY", calendar));
 
 				}
-				
 
 				for (int i = 0; i < table.getRowCount(); i++) {
-				docteurs.add(table.getValueAt(i, 0));
+					 docteurs.get(i).setNom(table.getValueAt(i, 0).toString());
 				}
-				
+
 				int indice = 0;
 				for (Object elem1 : dates) {
-
-				System.out.println("date "+ elem1 + "docteur " + docteurs.get(indice %  docteurs.size()));
-				indice++;
+					System.out.println("a cette date  " + elem1 + "le docteur:  " + docteurs.get(indice % docteurs.size()).getNom());
+					System.out.println(" preferences1 " + String.format("%1$td/%1$tm/%1$tY", docteurs.get(indice % docteurs.size()).getPreference().get(0).getDate()));
+					System.out.println("disponibilité  "+docteurs.get(indice % docteurs.size()).getPreference().get(0).getPrefenum());
+					indice++;
 				}
 			
 
