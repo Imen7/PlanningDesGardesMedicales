@@ -62,7 +62,7 @@ public class MembresDeGarde extends JFrame {
 		// JScrollPane
 		JScrollPane pane = new JScrollPane(table);
 		pane.setEnabled(false);
-		pane.setBounds(43, 172, 913, 258);
+		pane.setBounds(46, 165, 913, 258);
 
 		contentPane.add(pane);
 
@@ -123,6 +123,7 @@ public class MembresDeGarde extends JFrame {
 		contentPane.add(btnPlanning);
 		btnPlanning.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			
 
 				// docteurs.clear();
 				dates.clear();

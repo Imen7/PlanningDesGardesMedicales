@@ -73,13 +73,13 @@ public class Disponibilite extends JFrame {
 		Object[][] data = null;
 		String[] colomname = { "Date", "Disponibilité" };
 		DefaultTableModel model = new DefaultTableModel(data, colomname);
-		JTable table = new JTable(model);
-		table.setBackground(Color.LIGHT_GRAY);
-		table.setForeground(Color.black);
-		table.setRowHeight(30);
+		JTable table1 = new JTable(model);
+		table1.setBackground(Color.LIGHT_GRAY);
+		table1.setForeground(Color.black);
+		table1.setRowHeight(30);
 
 		// JScrollPane
-		JScrollPane pane = new JScrollPane(table);
+		JScrollPane pane = new JScrollPane(table1);
 		pane.setBounds(46, 221, 363, 197);
 		contentPane.add(pane);
 
@@ -120,6 +120,7 @@ public class Disponibilite extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Docteur docteur = new Docteur(preference);
 				MembresDeGarde.docteurs.add(docteur);
+
 				setVisible(false);
 			}
 
