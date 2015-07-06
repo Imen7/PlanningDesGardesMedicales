@@ -16,6 +16,7 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import com.sifast.stage.modele.Docteur;
 import com.sifast.stage.modele.PrefEnum;
 import com.sifast.stage.modele.Preference;
 import com.toedter.calendar.JDateChooser;
@@ -105,8 +106,6 @@ public class Disponibilite extends JFrame {
 				pref.setPrefenum((PrefEnum) row[1]);
 
 				preference.add(pref);
-				System.out.println("les prefernece ");
-				System.out.println(pref.getDate()+"  "+pref.getPrefenum());
 
 			}
 		});
@@ -119,7 +118,8 @@ public class Disponibilite extends JFrame {
 		btnValider.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				
+				Docteur docteur = new Docteur(preference);
+				MembresDeGarde.docteurs.add(docteur);
 				setVisible(false);
 			}
 
