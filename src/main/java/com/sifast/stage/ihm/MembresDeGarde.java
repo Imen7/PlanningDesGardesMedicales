@@ -88,11 +88,15 @@ public class MembresDeGarde extends JFrame {
 				dispoColumn.setCellEditor(bt);
 
 				model.addRow(row);
+				
+				
+			
+			//	docteurs.add(table.getValueAt(table.getRowCount(), 0));
+
 
 				// Docteur docteur = new Docteur((String)
 				// table.getValueAt(table.getRowCount(), 0), bt.preference);
 				// docteurs.add(docteur);
-				// System.out.println("docteur"+docteur.getNom());
 
 			}
 
@@ -127,6 +131,9 @@ public class MembresDeGarde extends JFrame {
 		btnPlanning.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
+				docteurs.clear();
+				dates.clear();
+				
 				Calendar calendar = Calendar.getInstance();
 				calendar.setTime(AjouterPlanning.plan.getDateDebut().getDate());
 				Calendar calMax = Calendar.getInstance();
@@ -147,7 +154,7 @@ public class MembresDeGarde extends JFrame {
 				
 
 				for (int i = 0; i < table.getRowCount(); i++) {
-					docteurs.add(table.getValueAt(i, 0));
+				docteurs.add(table.getValueAt(i, 0));
 				}
 				
 				int indice = 0;
