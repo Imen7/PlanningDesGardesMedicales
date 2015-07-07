@@ -4,9 +4,11 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -130,24 +132,25 @@ public class AjouterPlanning extends JFrame {
 		butAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (textField.getText().equals(""))
-					label.setVisible(true);
-			
-				if (dateD.getDateFormatString().equals("dd-MM-yyyy"));
-					label_1.setVisible(true);
-					
-				if (dateF.getDateFormatString().equals("dd-MM-yyyy"))
-					lblNewLabel.setVisible(true);
+				if (textField.getText().isEmpty() || dateD.getDateFormatString().isEmpty() || dateF.getDateFormatString().isEmpty())
+				{ JOptionPane.showMessageDialog(null, "Un ou plusieurs champs sont vide\n \n                  Svp réssayez", "Erreur", JOptionPane.ERROR_MESSAGE);
 				
+				 }
 				
-				{
+				else  if (!textField.getText().isEmpty() && !dateD.getDateFormatString().isEmpty() && !dateF.getDateFormatString().isEmpty() && dateD.getDate().getTime()<dateF.getDate().getTime())
+						{
+				    	
 					MembresDeGarde frame = new MembresDeGarde();
 				frame.setSize(1000, 600);
 				frame.setLocationRelativeTo(null);
 				frame.setTitle("Membres de garde");
 				frame.setVisible(true);
 				}
-			}
+				    	 else{ JOptionPane.showMessageDialog(null, "La date de fin doit etre situé aprés la date début\n \n                  Svp réssayez", "Erreur", JOptionPane.ERROR_MESSAGE);
+							
+							 }
+				    	 }
+			
 		});
 
 	}
