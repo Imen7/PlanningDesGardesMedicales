@@ -78,18 +78,15 @@ public class MembresDeGarde extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				model.addRow(row);
 
-
 				AfficherDisponibilité bt = new AfficherDisponibilité(new JCheckBox());
 				JComboBox<String> comboBox = new JComboBox<String>(items);
-				
+
 				TableColumn nbrGardeColumn = table.getColumnModel().getColumn(1);
 				TableColumn dispoColumn = table.getColumnModel().getColumn(2);
 
 				nbrGardeColumn.setCellEditor(new DefaultCellEditor(comboBox));
 				dispoColumn.setCellRenderer(new AfficherBouton());
 				dispoColumn.setCellEditor(bt);
-				
-			
 
 			}
 
@@ -125,36 +122,40 @@ public class MembresDeGarde extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			
 
-				// docteurs.clear();
-				dates.clear();
+				// mettre les jours du planning dans une liste dates
 
+				dates.clear();
 				Calendar calendar = Calendar.getInstance();
 				calendar.setTime(AjouterPlanning.plan.getDateDebut().getDate());
 				Calendar calMax = Calendar.getInstance();
 				calMax.setTime(AjouterPlanning.plan.getDateFin().getDate());
-
-				// System.out.println("planning" +
-				// (String.format("%1$td/%1$tm/%1$tY", calendar)));
 				dates.add(String.format("%1$td/%1$tm/%1$tY", calendar));
 				while (!(String.format("%1$td/%1$tm/%1$tY", calendar).equals(String.format("%1$td/%1$tm/%1$tY", calMax)))) {
 					calendar.add(Calendar.DATE, 1);
-					// System.out.println((String.format("%1$td/%1$tm/%1$tY",
-					// calendar)));
-
 					dates.add(String.format("%1$td/%1$tm/%1$tY", calendar));
 
 				}
 
+				// ajout des docteurs fans une liste docteurs
 				for (int i = 0; i < table.getRowCount(); i++) {
-					 docteurs.get(i).setNom(table.getValueAt(i, 0).toString());
+					docteurs.get(i).setNom(table.getValueAt(i, 0).toString());
 				}
 
+				// affichage du résultat
 				int indice = 0;
 				for (Object elem1 : dates) {
-					System.out.println("a cette date  " + elem1 + "le docteur:  " + docteurs.get(indice % docteurs.size()).getNom());
-					System.out.println(" preferences1 " + String.format("%1$td/%1$tm/%1$tY", docteurs.get(indice % docteurs.size()).getPreference().get(0).getDate()));
-					System.out.println("disponibilité  "+docteurs.get(indice % docteurs.size()).getPreference().get(0).getPrefenum());
-					indice++;
+					while (true) {
+						Docteur docteur = docteurs.get(indice % docteurs.size());
+
+						if (!(docteur.getPreference().containsKey(elem1))) {
+							System.out.println("a cette date  " + elem1 + "le docteur:  " + docteurs.get(indice % docteurs.size()).getNom() + " en garde ");
+							indice++;
+							break;
+						}
+
+						indice++;
+					}
+
 				}
 			
 

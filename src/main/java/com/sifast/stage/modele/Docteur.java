@@ -1,20 +1,26 @@
 package com.sifast.stage.modele;
 
-import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 
 public class Docteur {
 
 	private String nom;
-	private ArrayList<Preference> preference=new ArrayList<Preference>();
+	private HashMap<String, PrefEnum> preference;
 	
 	//constructeur
 	
-	public Docteur( ArrayList<Preference> preference) {
+	public Docteur( HashMap<String, PrefEnum> preference) {
 		this.preference = preference;
 	}
 	
 	// Nom set, get
 
+
+	
+	public Docteur() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public String getNom() {
 		return nom;
@@ -24,17 +30,13 @@ public class Docteur {
 		this.nom = nom;
 	}
 
-
-	// preference set,get
-
-	public ArrayList<Preference> getPreference() {
+	public HashMap<String, PrefEnum> getPreference() {
 		return preference;
 	}
 
-	public void setPreference(ArrayList<Preference> preference) {
+	public void setPreference(HashMap<String, PrefEnum> preference) {
 		this.preference = preference;
 	}
 
-	
-	
+
 }
