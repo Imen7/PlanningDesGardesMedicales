@@ -31,7 +31,7 @@ public class Disponibilite extends JFrame {
 	public Disponibilite() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 498);
+		setBounds(100, 100, 600, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -40,30 +40,23 @@ public class Disponibilite extends JFrame {
 		// Nom docteur
 
 		JLabel lblNomDuDocteur = new JLabel(MembresDeGarde.table.getValueAt(MembresDeGarde.table.getSelectedRow(), 0).toString());
-		lblNomDuDocteur.setBounds(161, 34, 131, 14);
+		lblNomDuDocteur.setBounds(235, 33, 131, 14);
 		contentPane.add(lblNomDuDocteur);
 
 		// choisir la date
 
 		JDateChooser dateDispo = new JDateChooser();
-		dateDispo.setBounds(143, 87, 105, 20);
+		dateDispo.setBounds(221, 89, 105, 20);
 		contentPane.add(dateDispo);
-
-		// choisir de preference (dispo,dispo_but,dispo_ok)
-
-		JRadioButton rbDispo = new JRadioButton("dispo ");
-		buttonGroup.add(rbDispo);
-		rbDispo.setBounds(46, 130, 87, 23);
-		contentPane.add(rbDispo);
 
 		JRadioButton rbDispoBut = new JRadioButton("dispo_but");
 		buttonGroup.add(rbDispoBut);
-		rbDispoBut.setBounds(161, 130, 87, 23);
+		rbDispoBut.setBounds(159, 149, 87, 23);
 		contentPane.add(rbDispoBut);
 
 		JRadioButton rbNotDispo = new JRadioButton("Not_dispo");
 		buttonGroup.add(rbNotDispo);
-		rbNotDispo.setBounds(286, 130, 95, 23);
+		rbNotDispo.setBounds(331, 149, 95, 23);
 		contentPane.add(rbNotDispo);
 
 		// table (affichage de disponibilité)
@@ -78,22 +71,20 @@ public class Disponibilite extends JFrame {
 
 		// JScrollPane
 		JScrollPane pane = new JScrollPane(table1);
-		pane.setBounds(46, 221, 363, 197);
+		pane.setBounds(96, 274, 385, 197);
 		contentPane.add(pane);
 
 		// bouton ajouter
 
 		JButton btnAjouter = new JButton("Ajouter");
-		btnAjouter.setBounds(169, 174, 89, 23);
+		btnAjouter.setBounds(175, 210, 89, 23);
 		contentPane.add(btnAjouter);
 		Object[] row = new Object[2];
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				row[0] = String.format("%1$td/%1$tm/%1$tY", dateDispo.getDate());
 
-				if (rbDispo.isSelected()) {
-					row[1] = PrefEnum.dispo_ok;
-				} else if (rbDispoBut.isSelected()) {
+				 if (rbDispoBut.isSelected()) {
 					row[1] = PrefEnum.dispo_but;
 				} else if (rbNotDispo.isSelected()) {
 					row[1] = PrefEnum.not_dispo;
@@ -104,11 +95,30 @@ public class Disponibilite extends JFrame {
 
 			}
 		});
+		
+		// boutton supprimer
+
+				JButton btnSupprimerMembre = new JButton("Supprimer");
+				btnSupprimerMembre.setBounds(294, 210, 95, 23);
+				contentPane.add(btnSupprimerMembre);
+
+				btnSupprimerMembre.addActionListener(new ActionListener() {
+
+					public void actionPerformed(ActionEvent e) {
+
+						int indice = table1.getSelectedRow();
+						if (indice >= 0) {
+							model.removeRow(indice);
+						} else {
+							System.out.println("Delete Error");
+						}
+					}
+				});
 
 		// bouton valider
 
 		JButton btnValider = new JButton("valider ");
-		btnValider.setBounds(159, 429, 89, 23);
+		btnValider.setBounds(235, 506, 89, 23);
 		contentPane.add(btnValider);
 		btnValider.addActionListener(new ActionListener() {
 
