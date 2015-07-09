@@ -16,7 +16,6 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import com.sifast.stage.modele.Docteur;
 import com.sifast.stage.modele.PrefEnum;
 import com.toedter.calendar.JDateChooser;
 
@@ -40,7 +39,7 @@ public class Disponibilite extends JFrame {
 
 		// Nom docteur
 
-		JLabel lblNomDuDocteur = new JLabel("Nom du Docteur ");
+		JLabel lblNomDuDocteur = new JLabel(MembresDeGarde.table.getValueAt(MembresDeGarde.table.getSelectedRow(), 0).toString());
 		lblNomDuDocteur.setBounds(161, 34, 131, 14);
 		contentPane.add(lblNomDuDocteur);
 
@@ -114,9 +113,7 @@ public class Disponibilite extends JFrame {
 		btnValider.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				Docteur docteur = new Docteur(preference);
-				MembresDeGarde.docteurs.add(docteur);
-
+				MembresDeGarde.docteurs.get(MembresDeGarde.table.getSelectedRow()).setPreference(preference);
 				setVisible(false);
 			}
 

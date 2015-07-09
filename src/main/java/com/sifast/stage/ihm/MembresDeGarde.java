@@ -7,11 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import javax.swing.DefaultCellEditor;
+import java.util.HashMap;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -22,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import com.sifast.stage.modele.Docteur;
+import com.sifast.stage.modele.PrefEnum;
 
 public class MembresDeGarde extends JFrame {
 
@@ -29,6 +28,7 @@ public class MembresDeGarde extends JFrame {
 	private JPanel contentPane;
 	public static ArrayList<Docteur> docteurs = new ArrayList<Docteur>();
 	ArrayList<Object> dates = new ArrayList<Object>();
+	public static JTable table;
 
 	public MembresDeGarde() {
 
@@ -51,9 +51,9 @@ public class MembresDeGarde extends JFrame {
 		// table
 
 		Object[][] data = null;
-		String[] colomname = { "membre", "nombre de garde maximale par semaine", "Disponibilité" };
+		String[] colomname = { "membre", "Disponibilité" };
 		DefaultTableModel model = new DefaultTableModel(data, colomname);
-		JTable table = new JTable(model);
+		 table = new JTable(model);
 
 		table.setBackground(Color.LIGHT_GRAY);
 		table.setForeground(Color.black);
@@ -67,26 +67,25 @@ public class MembresDeGarde extends JFrame {
 		contentPane.add(pane);
 
 		// bouton ajouter
-		Component[] row = new Component[3];
+		Component[] row = new Component[2];
 		JButton btnAdd = new JButton("Ajouter membre");
 		btnAdd.setFont(new Font("Times New Roman", Font.PLAIN, 17));
 		btnAdd.setBounds(787, 102, 169, 42);
 		contentPane.add(btnAdd);
-		final String[] items = { "1", "2", "3", "4", "5", "6" };
 		btnAdd.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				model.addRow(row);
-
+				Docteur docteur =new Docteur();
+				docteur.setPreference(new HashMap<String, PrefEnum>());
+				docteurs.add(docteur);
 				AfficherDisponibilité bt = new AfficherDisponibilité(new JCheckBox());
-				JComboBox<String> comboBox = new JComboBox<String>(items);
 
-				TableColumn nbrGardeColumn = table.getColumnModel().getColumn(1);
-				TableColumn dispoColumn = table.getColumnModel().getColumn(2);
+				TableColumn dispoColumn = table.getColumnModel().getColumn(1);
 
-				nbrGardeColumn.setCellEditor(new DefaultCellEditor(comboBox));
 				dispoColumn.setCellRenderer(new AfficherBouton());
 				dispoColumn.setCellEditor(bt);
+				
 
 			}
 
@@ -136,7 +135,7 @@ public class MembresDeGarde extends JFrame {
 
 				}
 
-				// ajout des docteurs fans une liste docteurs
+				// ajout des docteurs dans une liste docteurs
 				for (int i = 0; i < table.getRowCount(); i++) {
 					docteurs.get(i).setNom(table.getValueAt(i, 0).toString());
 				}
@@ -145,9 +144,9 @@ public class MembresDeGarde extends JFrame {
 				int indice = 0;
 				for (Object elem1 : dates) {
 					while (true) {
-						Docteur docteur = docteurs.get(indice % docteurs.size());
-
-						if (!(docteur.getPreference().containsKey(elem1))) {
+						Docteur docteur = docteurs.get(indice % docteurs.size());                    
+						if (!(docteur.getPreference().containsKey(elem1))) 
+						{
 							System.out.println("a cette date  " + elem1 + "le docteur:  " + docteurs.get(indice % docteurs.size()).getNom() + " en garde ");
 							indice++;
 							break;

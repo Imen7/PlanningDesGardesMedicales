@@ -1,6 +1,5 @@
 package com.sifast.stage.modele;
 
-import java.util.Date;
 import java.util.HashMap;
 
 public class Docteur {
@@ -10,6 +9,12 @@ public class Docteur {
 	
 	//constructeur
 	
+	public Docteur() {
+	}
+	public Docteur(String nom) {
+		this.nom = nom;
+	}
+
 	public Docteur( HashMap<String, PrefEnum> preference) {
 		this.preference = preference;
 	}
@@ -18,9 +23,6 @@ public class Docteur {
 
 
 	
-	public Docteur() {
-		// TODO Auto-generated constructor stub
-	}
 
 	public String getNom() {
 		return nom;
