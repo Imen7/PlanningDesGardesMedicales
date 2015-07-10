@@ -74,12 +74,12 @@ public class PdfClass {
 		try {
 
 			if ((new File(
-					"d:\\WORK\\projects\\PlanningDesGardesMedicales\\planning.pdf"))
+					"d:\\Projets\\PlanningDesGardesMedicales\\planning.pdf"))
 					.exists()) {
 
 				Process p = Runtime
 						.getRuntime()
-						.exec("rundll32 url.dll,FileProtocolHandler d:\\WORK\\projects\\PlanningDesGardesMedicales\\planning.pdf");
+						.exec("rundll32 url.dll,FileProtocolHandler d:\\Projets\\PlanningDesGardesMedicales\\planning.pdf");
 				p.waitFor();
 
 			} else {

@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -45,15 +46,14 @@ public class MembresDeGarde extends JFrame {
 		contentPane.setLayout(null);
 
 		// text
-		
+
 		JTextArea textArea_1 = new JTextArea(AjouterPlanning.plan.getNomPlanning());
 		textArea_1.setBackground(Color.LIGHT_GRAY);
 		textArea_1.setBounds(213, 32, 156, 46);
 		textArea_1.setFont(new Font("Myanmar Text", Font.ITALIC, 20));
 		textArea_1.setEditable(false);
 		contentPane.add(textArea_1);
-		
-		
+
 		JTextArea textArea = new JTextArea("Membre de garde du " + String.format("%1$td/%1$tm/%1$tY", AjouterPlanning.plan.getDateDebut().getDate()) + " au "
 				+ String.format("%1$td/%1$tm/%1$tY", AjouterPlanning.plan.getDateFin().getDate()));
 		textArea.setBackground(Color.LIGHT_GRAY);
@@ -62,13 +62,12 @@ public class MembresDeGarde extends JFrame {
 		textArea.setBounds(57, 89, 466, 48);
 		contentPane.add(textArea);
 
-		
 		// table
 
 		Object[][] data = null;
 		String[] colomname = { "membre", "Disponibilité" };
 		DefaultTableModel model = new DefaultTableModel(data, colomname);
-		 table = new JTable(model);
+		table = new JTable(model);
 
 		table.setBackground(Color.LIGHT_GRAY);
 		table.setForeground(Color.black);
@@ -91,7 +90,7 @@ public class MembresDeGarde extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				model.addRow(row);
-				Docteur docteur =new Docteur();
+				Docteur docteur = new Docteur();
 				docteur.setPreference(new HashMap<String, PrefEnum>());
 				docteurs.add(docteur);
 				AfficherDisponibilité bt = new AfficherDisponibilité(new JCheckBox());
@@ -100,7 +99,6 @@ public class MembresDeGarde extends JFrame {
 
 				dispoColumn.setCellRenderer(new AfficherBouton());
 				dispoColumn.setCellEditor(bt);
-				
 
 			}
 
@@ -133,11 +131,9 @@ public class MembresDeGarde extends JFrame {
 		contentPane.add(btnPlanning);
 		btnPlanning.setBounds(259, 503, 98, 34);
 		contentPane.add(btnPlanning);
-		
-		
+
 		btnPlanning.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
 
 				// mettre les jours du planning dans une liste dates
 
@@ -158,65 +154,16 @@ public class MembresDeGarde extends JFrame {
 					docteurs.get(i).setNom(table.getValueAt(i, 0).toString());
 				}
 
-				// affichage du résultat
-				Boolean test2 =true;
-				int indice = 0;
-				for (Object elem1 : dates) {
-					test2=true;
-
-					while (test2) {
-						Docteur docteur = docteurs.get(indice % docteurs.size());                    
-						if (!(docteur.getPreference().containsKey(elem1))) // champ vide= dispo
-						{
-							System.out.println("a cette date 1 " + elem1 + "le docteur:  " + docteurs.get(indice % docteurs.size()).getNom() + " en garde ");
-							indice++;
-							break;
-						}
-						
-						if (docteur.getPreference().get(elem1).equals(PrefEnum.not_dispo))
-						{
-							indice++;
-						}
-						
-						
-						if(docteur.getPreference().get(elem1).equals(PrefEnum.dispo_but))
-							{
-							Boolean	test=false;
-							// recherche du docteur disponible
-								for(int i=0 ;i<docteurs.size();i++)
-								{
-									if(!(docteurs.get(i).getPreference().containsKey(elem1)))
-									{System.out.println("a cette date " + elem1 + "le docteur:  " + docteurs.get(i).getNom() + " en garde ");
-									test=true;
-									indice++;
-									test2=false;
-									break;
-									}
-						
-								}
-								if (!test)  {
-								System.out.println("a cette date " + elem1 + "le docteur:  " + docteurs.get(indice % docteurs.size()).getNom() + " en garde ");
-								indice++;
-								break;
-								} 
-
-								break;
-							}
-							
-
-						}
-
-					
-
-				}
-			
+				if (table.getRowCount() == 0) 
+					JOptionPane.showMessageDialog(null, "Ajouter au moins un membre \n \n                  Svp réssayez", "Erreur",
+							JOptionPane.ERROR_MESSAGE);
+				else{ 
 				try {
 					PdfClass.main(arg);
 				} catch (Exception ex) {
-					Logger.getLogger(MembresDeGarde.class.getName()).log(Level.SEVERE, null,
-							ex);
-				}
-				
+					Logger.getLogger(MembresDeGarde.class.getName()).log(Level.SEVERE, null, ex);
+				}}
+
 			}
 		});
 

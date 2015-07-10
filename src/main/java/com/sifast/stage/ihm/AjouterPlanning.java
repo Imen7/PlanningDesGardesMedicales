@@ -15,13 +15,12 @@ import javax.swing.border.EmptyBorder;
 import com.sifast.stage.modele.PlanningGarde;
 import com.toedter.calendar.JDateChooser;
 
-
 public class AjouterPlanning extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
-	
+
 	public static PlanningGarde plan = new PlanningGarde();
 
 	// classe principale
@@ -93,41 +92,44 @@ public class AjouterPlanning extends JFrame {
 		dateD.setDateFormatString("dd-MM-yyyy");
 		dateD.setBounds(310, 228, 97, 20);
 		contentPane.add(dateD);
-		plan.setDateDebut(dateD);
-		plan.setDateFin(dateF);
-		
-		
-		
+
 		// bouton ajouter
 
 		JButton butAjouter = new JButton("Ajouter");
 		butAjouter.setBounds(197, 398, 200, 50);
 		contentPane.add(butAjouter);
-		
 
 		butAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				plan.setNomPlanning(textField.getText().toString());
 				
-				if (textField.getText().isEmpty() || dateD.getDateFormatString().isEmpty() || dateF.getDateFormatString().isEmpty())
-				{ JOptionPane.showMessageDialog(null, "Un ou plusieurs champs sont vide\n \n                  Svp réssayez", "Erreur", JOptionPane.ERROR_MESSAGE);
-				
-				 }
-				
-				else  if (!textField.getText().isEmpty() && !dateD.getDateFormatString().isEmpty() && !dateF.getDateFormatString().isEmpty() && dateD.getDate().getTime()<dateF.getDate().getTime())
-						{
-				    	
-					MembresDeGarde frame = new MembresDeGarde();
-				frame.setSize(600, 600);
-				frame.setLocationRelativeTo(null);
-				frame.setTitle("Membres de garde");
-				frame.setVisible(true);
+		
+
+				if ((textField.getText().isEmpty()) || (dateD.getDate()==null) || (dateF.getDate()==null)) {
+					JOptionPane.showMessageDialog(null, "Un ou plusieurs champs sont vide\n \n                  Svp réssayez", "Erreur",
+							JOptionPane.ERROR_MESSAGE);
+
 				}
-				    	 else{ JOptionPane.showMessageDialog(null, "La date de fin doit etre situé aprés la date début\n \n                  Svp réssayez", "Erreur", JOptionPane.ERROR_MESSAGE);
-							
-							 }
-				    	 }
-			
+
+				else
+				{	if ((!(textField.getText().isEmpty())) && (!(dateD.getDate()==null)) && (!(dateD.getDate()==null))
+						&& (dateD.getDate().getTime() < dateF.getDate().getTime())) {
+
+					plan.setDateDebut(dateD);
+					plan.setDateFin(dateF);
+					plan.setNomPlanning(textField.getText().toString());
+					
+					MembresDeGarde frame = new MembresDeGarde();
+					frame.setSize(600, 600);
+					frame.setLocationRelativeTo(null);
+					frame.setTitle("Membres de garde");
+					frame.setVisible(true);
+				} else {
+					JOptionPane.showMessageDialog(null, "La date de fin doit etre situé aprés la date début\n \n                  Svp réssayez", "Erreur",
+							JOptionPane.ERROR_MESSAGE);
+
+				}}
+			}
+
 		});
 
 	}

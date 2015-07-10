@@ -26,7 +26,7 @@ public class PlanningGarde {
 	}
 
 	public void setNomPlanning(String nomPlanning) {
-		NomPlanning = nomPlanning;
+		this.NomPlanning = nomPlanning;
 	}
 
 	public JDateChooser getDateDebut() {
@@ -34,7 +34,7 @@ public class PlanningGarde {
 	}
 
 	public void setDateDebut(JDateChooser dateDebut) {
-		DateDebut = dateDebut;
+		this.DateDebut = dateDebut;
 	}
 
 	public JDateChooser getDateFin() {
@@ -42,7 +42,7 @@ public class PlanningGarde {
 	}
 
 	public void setDateFin(JDateChooser dateFin) {
-		DateFin = dateFin;
+		this.DateFin = dateFin;
 	}
 
 }
