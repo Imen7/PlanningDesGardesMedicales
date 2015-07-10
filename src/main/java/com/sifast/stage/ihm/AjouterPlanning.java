@@ -34,7 +34,7 @@ public class AjouterPlanning extends JFrame {
 				try {
 					AjouterPlanning frame = new AjouterPlanning();
 					frame.setVisible(true);
-					frame.setSize(1000, 600);
+					frame.setSize(600, 600);
 					frame.setLocationRelativeTo(null);
 					frame.setTitle("Ajouter Planning");
 				} catch (Exception e) {
