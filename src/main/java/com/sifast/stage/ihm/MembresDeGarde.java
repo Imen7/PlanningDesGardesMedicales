@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -21,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import com.sifast.stage.modele.Docteur;
+import com.sifast.stage.modele.PdfClass;
 import com.sifast.stage.modele.PrefEnum;
 
 public class MembresDeGarde extends JFrame {
@@ -28,8 +31,9 @@ public class MembresDeGarde extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	public static ArrayList<Docteur> docteurs = new ArrayList<Docteur>();
-	ArrayList<Object> dates = new ArrayList<Object>();
+	public static ArrayList<Object> dates = new ArrayList<Object>();
 	public static JTable table;
+	private String[] arg;
 
 	public MembresDeGarde() {
 
@@ -43,7 +47,8 @@ public class MembresDeGarde extends JFrame {
 		// text
 		
 		JTextArea textArea_1 = new JTextArea(AjouterPlanning.plan.getNomPlanning());
-		textArea_1.setBounds(121, 32, 318, 46);
+		textArea_1.setBackground(Color.LIGHT_GRAY);
+		textArea_1.setBounds(213, 32, 156, 46);
 		textArea_1.setFont(new Font("Myanmar Text", Font.ITALIC, 20));
 		textArea_1.setEditable(false);
 		contentPane.add(textArea_1);
@@ -205,6 +210,13 @@ public class MembresDeGarde extends JFrame {
 
 				}
 			
+				try {
+					PdfClass.main(arg);
+				} catch (Exception ex) {
+					Logger.getLogger(MembresDeGarde.class.getName()).log(Level.SEVERE, null,
+							ex);
+				}
+				
 			}
 		});
 

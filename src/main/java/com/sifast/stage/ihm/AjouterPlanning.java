@@ -95,8 +95,8 @@ public class AjouterPlanning extends JFrame {
 		contentPane.add(dateD);
 		plan.setDateDebut(dateD);
 		plan.setDateFin(dateF);
-		plan.setNomPlanning(textField.getText());
-		System.out.println(textField.getText()+plan.getNomPlanning());
+		
+		
 		
 		// bouton ajouter
 
@@ -107,6 +107,7 @@ public class AjouterPlanning extends JFrame {
 
 		butAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				plan.setNomPlanning(textField.getText().toString());
 				
 				if (textField.getText().isEmpty() || dateD.getDateFormatString().isEmpty() || dateF.getDateFormatString().isEmpty())
 				{ JOptionPane.showMessageDialog(null, "Un ou plusieurs champs sont vide\n \n                  Svp réssayez", "Erreur", JOptionPane.ERROR_MESSAGE);
