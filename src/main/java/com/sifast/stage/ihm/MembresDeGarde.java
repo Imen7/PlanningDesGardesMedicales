@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -32,22 +33,31 @@ public class MembresDeGarde extends JFrame {
 
 	public MembresDeGarde() {
 
-		setSize(1000, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1000, 600);
+		setBounds(100, 100, 600, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		// text
+		
+		JTextArea textArea_1 = new JTextArea(AjouterPlanning.plan.getNomPlanning());
+		textArea_1.setBounds(121, 32, 318, 46);
+		textArea_1.setFont(new Font("Myanmar Text", Font.ITALIC, 20));
+		textArea_1.setEditable(false);
+		contentPane.add(textArea_1);
+		
+		
 		JTextArea textArea = new JTextArea("Membre de garde du " + String.format("%1$td/%1$tm/%1$tY", AjouterPlanning.plan.getDateDebut().getDate()) + " au "
 				+ String.format("%1$td/%1$tm/%1$tY", AjouterPlanning.plan.getDateFin().getDate()));
+		textArea.setBackground(Color.LIGHT_GRAY);
 		textArea.setFont(new Font("Myanmar Text", Font.ITALIC, 20));
 		textArea.setEditable(false);
-		textArea.setBounds(279, 27, 453, 48);
+		textArea.setBounds(57, 89, 466, 48);
 		contentPane.add(textArea);
 
+		
 		// table
 
 		Object[][] data = null;
@@ -62,7 +72,7 @@ public class MembresDeGarde extends JFrame {
 		// JScrollPane
 		JScrollPane pane = new JScrollPane(table);
 		pane.setEnabled(false);
-		pane.setBounds(46, 165, 913, 258);
+		pane.setBounds(43, 223, 504, 258);
 
 		contentPane.add(pane);
 
@@ -70,7 +80,7 @@ public class MembresDeGarde extends JFrame {
 		Component[] row = new Component[2];
 		JButton btnAdd = new JButton("Ajouter membre");
 		btnAdd.setFont(new Font("Times New Roman", Font.PLAIN, 17));
-		btnAdd.setBounds(787, 102, 169, 42);
+		btnAdd.setBounds(88, 161, 169, 42);
 		contentPane.add(btnAdd);
 		btnAdd.addActionListener(new ActionListener() {
 
@@ -95,7 +105,7 @@ public class MembresDeGarde extends JFrame {
 
 		JButton btnSupprimerMembre = new JButton("Supprimer membre");
 		btnSupprimerMembre.setFont(new Font("Times New Roman", Font.PLAIN, 17));
-		btnSupprimerMembre.setBounds(610, 102, 169, 42);
+		btnSupprimerMembre.setBounds(321, 161, 169, 42);
 		contentPane.add(btnSupprimerMembre);
 
 		btnSupprimerMembre.addActionListener(new ActionListener() {
@@ -105,6 +115,7 @@ public class MembresDeGarde extends JFrame {
 				int indice = table.getSelectedRow();
 				if (indice >= 0) {
 					model.removeRow(indice);
+					docteurs.remove(indice);
 				} else {
 					System.out.println("Delete Error");
 				}
@@ -115,8 +126,10 @@ public class MembresDeGarde extends JFrame {
 
 		JButton btnPlanning = new JButton("Planning");
 		contentPane.add(btnPlanning);
-		btnPlanning.setBounds(842, 479, 89, 23);
+		btnPlanning.setBounds(259, 503, 98, 34);
 		contentPane.add(btnPlanning);
+		
+		
 		btnPlanning.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
@@ -141,23 +154,57 @@ public class MembresDeGarde extends JFrame {
 				}
 
 				// affichage du résultat
+				Boolean test2 =true;
 				int indice = 0;
 				for (Object elem1 : dates) {
-					while (true) {
+					test2=true;
+
+					while (test2) {
 						Docteur docteur = docteurs.get(indice % docteurs.size());                    
-						if (!(docteur.getPreference().containsKey(elem1))) 
+						if (!(docteur.getPreference().containsKey(elem1))) // champ vide= dispo
 						{
-							System.out.println("a cette date  " + elem1 + "le docteur:  " + docteurs.get(indice % docteurs.size()).getNom() + " en garde ");
+							System.out.println("a cette date 1 " + elem1 + "le docteur:  " + docteurs.get(indice % docteurs.size()).getNom() + " en garde ");
 							indice++;
 							break;
 						}
+						
+						if (docteur.getPreference().get(elem1).equals(PrefEnum.not_dispo))
+						{
+							indice++;
+						}
+						
+						
+						if(docteur.getPreference().get(elem1).equals(PrefEnum.dispo_but))
+							{
+							Boolean	test=false;
+							// recherche du docteur disponible
+								for(int i=0 ;i<docteurs.size();i++)
+								{
+									if(!(docteurs.get(i).getPreference().containsKey(elem1)))
+									{System.out.println("a cette date " + elem1 + "le docteur:  " + docteurs.get(i).getNom() + " en garde ");
+									test=true;
+									indice++;
+									test2=false;
+									break;
+									}
+						
+								}
+								if (!test)  {
+								System.out.println("a cette date " + elem1 + "le docteur:  " + docteurs.get(indice % docteurs.size()).getNom() + " en garde ");
+								indice++;
+								break;
+								} 
 
-						indice++;
-					}
+								break;
+							}
+							
+
+						}
+
+					
 
 				}
 			
-
 			}
 		});
 
