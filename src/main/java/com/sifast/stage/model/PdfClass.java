@@ -73,6 +73,7 @@ public class PdfClass {
 
 		try {
 
+			// TODO use relative path instead of absolut path
 			if ((new File(
 					"d:\\Projets\\PlanningDesGardesMedicales\\planning.pdf"))
 					.exists()) {
