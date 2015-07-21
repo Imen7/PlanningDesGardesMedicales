@@ -23,9 +23,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
-import com.sifast.stage.modele.Docteur;
-import com.sifast.stage.modele.PdfClass;
-import com.sifast.stage.modele.PrefEnum;
+import com.sifast.stage.model.Docteur;
+import com.sifast.stage.model.PdfClass;
+import com.sifast.stage.model.PrefEnum;
 
 public class MembresDeGarde extends JFrame {
 

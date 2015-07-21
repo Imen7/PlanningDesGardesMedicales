@@ -16,7 +16,7 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import com.sifast.stage.modele.PrefEnum;
+import com.sifast.stage.model.PrefEnum;
 import com.toedter.calendar.JDateChooser;
 
 public class Disponibilite extends JFrame {

@@ -12,7 +12,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import com.sifast.stage.modele.PlanningGarde;
+
+import com.sifast.stage.model.PlanningGarde;
 import com.toedter.calendar.JDateChooser;
 
 public class AjouterPlanning extends JFrame {

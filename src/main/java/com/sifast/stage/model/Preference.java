@@ -1,4 +1,4 @@
-package com.sifast.stage.modele;
+package com.sifast.stage.model;
 
 import java.util.Date;
 
